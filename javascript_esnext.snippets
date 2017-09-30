@@ -1,0 +1,161 @@
+global !p
+def capscore(t):
+	return '_'.join([ w.upper() for w in re.findall('[A-Z]+[a-z]*', t) ])
+
+def lowerdash(t):
+	return '-'.join([ w.lower() for w in re.findall('[a-z]+|[A-Z]+[a-z]*', t) ])
+endglobal
+
+#ES2015
+snippet "c(onst)?" "const" br
+const ${1} = ${2:'$1'};
+endsnippet
+
+snippet "l(et)?" "let" br
+let ${1} = ${2:'$1'};
+endsnippet
+
+snippet "dstruc" "const destructuring" br
+const { $1 } = ${2:props};
+endsnippet
+
+snippet "dstructhis" "const destructuring" br
+const { $1 } = this.${2:props}${3:. };
+endsnippet
+
+snippet r "return"
+return ${0:result;}
+endsnippet
+
+snippet : "Object Value JS"
+${1:key}: ${0:value},
+endsnippet
+
+snippet :f "method: func(...) { ... }"
+${1:key}: ${2:(args)} => {
+	return $4;
+}${3:,}
+endsnippet
+
+snippet "\.(map|filter|forEach|reduce)" "Array method with an arrow function" r
+.`!p snip.rv = match.group(1)`(${1:(c, i)} => {
+	return $2;
+});
+endsnippet
+
+snippet "\.(map|filter|forEach|reduce)=" "Array method with an arrow function inline" rA
+.`!p snip.rv = match.group(1)`(${1:(c, i)} => $2);
+endsnippet
+
+snippet => "Arrow function"
+(${1:args}) => {
+	return $2;
+}${3:;}
+endsnippet
+
+snippet =>> "Inline arrow function" A
+(${1:args}) => ($2);
+endsnippet
+
+snippet c=> "Const Function" bA
+const ${1:name} = (${2:args}) => {
+	return $4;
+}${3:;}
+endsnippet
+
+snippet expf "Export function" b
+export ${1:default }function ${2:name}($3) {
+	$4
+};
+endsnippet
+
+snippet fun* "Generator"
+function* ${1:name}($2) {
+	yield $3;
+}
+endsnippet
+
+snippet forof "For of loop" b
+for (let ${1:value} of ${2:iterable}) {
+	${3:$1}
+}
+endsnippet
+
+snippet class "Class"
+class ${1:Name} {
+	constructor(${2:arg}) {
+		$3
+	}
+	$4
+}
+endsnippet
+
+snippet imp "Import a lib" b
+import $1 from '$2`!p snip.rv=lowerdash(t[1])`';
+endsnippet
+
+snippet impf "Import a file" b
+import $1 from '${2:./}${3:$1}';
+endsnippet
+
+snippet impn "Import nested" b
+import { $1 } from '$2';
+endsnippet
+
+snippet impp "Import without from" b
+import '$1';
+endsnippet
+
+snippet imps "Import pluralized" b
+import $1 from '${2:.}/$1s';
+endsnippet
+
+snippet rc "Require const" b
+const $1 = require('$2`!p snip.rv=lowerdash(t[1])`');
+endsnippet
+
+snippet imm "Import immutable List and Map" b
+import { List, Map } from 'immutable';
+endsnippet
+
+
+snippet icn "Import classnames" b
+import cn from 'classnames';
+endsnippet
+
+snippet ise "Import shallowEqual" b
+import shallowEqual from 'shallowequal';
+endsnippet
+
+snippet "\.(map|filter|forEach|reduce)=" "Map with an arrow function inline" r
+.`!p snip.rv = match.group(1)`($1 => $2)
+endsnippet
+
+snippet cl "Console.log" b
+console.log($1);
+endsnippet
+
+snippet clv "Console log variable" b
+console.log('$1:', $1);
+endsnippet
+
+snippet "e(xport|xp|x)?" "export" br
+export ${1:default }$2;
+endsnippet
+
+snippet expl "Export from location" b
+export $1 from '${2:./}$1';
+endsnippet
+
+snippet expn "Export nested" b
+export { $1 } from '${2:./}';
+endsnippet
+
+snippet expi "Export from a file import" b
+import $1 from '${2:./}${3:$1}';
+export ${4:default} $1;
+endsnippet
+
+snippet expdi "Export default import from file" b
+export { default } from './${1:`!v expand('%:p:h:t')`}'
+endsnippet
