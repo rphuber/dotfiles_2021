@@ -217,6 +217,9 @@ nmap <leader>so :source $MYVIMRC<cr>
 " Explore using leader
 nmap <leader>ex :Explore<cr>
 
+set t_ZH=[3m
+set t_ZR=[23m
+hi Special cterm=italic
 hi Conceal ctermfg=red
 
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
