@@ -132,9 +132,13 @@ let g:indentLine_noConcealCursor="nc"
 
 let g:ale_linters = {
 \  'javascript': ['eslint', 'prettier'],
+\  'json': ['eslint', 'prettier'],
+\  'graphql': ['eslint', 'prettier'],
 \}
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint', ],
+\  'json': ['eslint', 'prettier'],
+\  'graphql': ['eslint', 'prettier'],
 \}
 let g:ale_javascript_prettier_options = '--no-semi --single-quote'
 let g:ale_fix_on_save = 1
