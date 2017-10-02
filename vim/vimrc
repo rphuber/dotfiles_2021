@@ -38,7 +38,6 @@ Plugin 'airblade/vim-gitgutter'
 " Plugin 'Yggdroot/indentLine'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'sbdchd/neoformat'
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'pangloss/vim-javascript'
@@ -49,11 +48,11 @@ Plugin 'maxmellon/vim-jsx-pretty'
 
 Plugin 'elixir-lang/vim-elixir'
 
-Plugin 'w0rp/ale'
-"Plugin 'prettier/vim-prettier'
-
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
+Plugin 'w0rp/ale'
+"Plugin 'prettier/vim-prettier'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -87,6 +86,8 @@ filetype plugin indent on    " required
 "------------------------------------------------------------------------------
 
 " Javascript Syntax Formatting
+let g:javascript_plugin_flow = 1
+let g:used_javascript_libs = 'underscore,backbone,react,requirejs,jasmine,d3,ramda'
 set concealcursor=nc
 set conceallevel=1
 let g:jsx_ext_required = 0
@@ -120,15 +121,7 @@ let g:gitgutter_sign_modified_removed = '|'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-" IndentLines
-
-let g:indentLine_color_term = 0
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-
 " ALE
-
 let g:ale_linters = {
 \  'javascript': ['eslint', 'prettier'],
 \  'json': ['eslint', 'prettier'],
@@ -159,6 +152,8 @@ set relativenumber
 set number
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 
 set linebreak
@@ -219,14 +214,27 @@ nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 " Explore using leader
 nmap <leader>ex :Explore<cr>
+" Show keyword for formatting of text under cursor
+nmap <Leader>sI :call <SID>SynStack()<CR>
 
 set t_ZH=[3m
 set t_ZR=[23m
+
 hi Special cterm=italic
 hi Conceal ctermfg=red
 let g:javascript_plugin_flow = 1
 
+let g:javascript_plugin_flow = 1
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
-autocmd BufWritePre *.js,*.graphql ALEFix
-autocmd BufNewFile,BufRead *.json setlocal conceallevel=2 concealcursor=nc
+autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
+autocmd BufRead,BufNewFile *.json setlocal conceallevel=2 concealcursor=nc
+
+" Functions
+
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
