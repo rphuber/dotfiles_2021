@@ -35,7 +35,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'auto-pairs'
 Plugin 'surround.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Yggdroot/indentLine'
+" Plugin 'Yggdroot/indentLine'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'sbdchd/neoformat'
@@ -121,12 +121,13 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 " IndentLines
-let g:indentLine_char = '┊'
+
+let g:indentLine_char = ''
 let g:indentLine_color_term = 0
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
-let g:indentLine_noConcealCursor="nc"
+let g:indentLine_noConcealCursor=""
 
 " ALE
 
@@ -225,8 +226,9 @@ set t_ZH=[3m
 set t_ZR=[23m
 hi Special cterm=italic
 hi Conceal ctermfg=red
+let g:javascript_plugin_flow = 1
 
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
-let g:javascript_plugin_flow = 1
-autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
+autocmd BufWritePre *.js,*.graphql ALEFix
+autocmd BufNewFile,BufRead *.json setlocal conceallevel=2 concealcursor=nc
