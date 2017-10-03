@@ -125,11 +125,15 @@ let g:gitgutter_eager = 0
 
 let g:ale_linters = {
 \  'javascript': ['eslint', 'prettier'],
+\  'json': ['eslint', 'prettier'],
+\  'graphql': ['eslint', 'prettier'],
 \}
 let g:ale_fixers = {
-\  'javascript': ['prettier', 'eslint', ],
+\  'javascript': ['prettier', 'eslint' ],
+\  'json': ['prettier', 'eslint', ],
+\  'graphql': ['prettier', 'eslint', ],
 \}
-let g:ale_javascript_prettier_options = '--no-semi --single-quote'
+let g:ale_javascript_prettier_options = '--single-quote --use-tabs'
 let g:ale_fix_on_save = 1
 
 
