@@ -39,8 +39,8 @@ Plugin 'repeat.vim'
 Plugin 'fugitive.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jlanzarotta/bufexplorer'
-" Plugin 'Yggdroot/indentLine'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'Yggdroot/indentLine'
 
 Plugin 'othree/html5.vim'
 Plugin 'digitaltoad/vim-pug'
