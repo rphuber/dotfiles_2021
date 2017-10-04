@@ -34,7 +34,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'auto-pairs'
 Plugin 'surround.vim'
+Plugin 'commentary.vim'
+Plugin 'repeat.vim'
+Plugin 'fugitive.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'jlanzarotta/bufexplorer'
 " Plugin 'Yggdroot/indentLine'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -136,9 +140,10 @@ let g:ale_fixers = {
 \  'css': ['eslint', 'prettier'],
 \  'scss': ['eslint', 'prettier'],
 \}
-let g:ale_javascript_prettier_options = '--no-semi --single-quote'
+let g:ale_javascript_prettier_options = '--single-quote --use-tabs'
 let g:ale_fix_on_save = 1
 
+set diffopt+=vertical
 
 set modelines=0
 set vb "flash screen rather than sound bell
@@ -146,6 +151,7 @@ set laststatus=2 " Always display the statusline in all windows
 set list " show trailing whiteshace and tabs
 set listchars=tab:▸\ ,trail:.,extends:>,precedes:<,nbsp:+
 set mouse=a
+set wildmenu
 
 set scrolloff=4
 set autoindent
@@ -164,9 +170,6 @@ set linebreak
 set textwidth=80
 set colorcolumn=+1,+2
 
-" set background=dark
-colorscheme jellybeans
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=Yellow
 
 set guifont=Inconsolata\ for\ Powerline:h14
 set clipboard=unnamed
@@ -183,7 +186,6 @@ set softtabstop=2
 " Formatting
 "------------------------------------------------------------------------------
 syntax on
-
 set noswapfile
 
 "------------------------------------------------------------------------------
@@ -196,8 +198,8 @@ nnoremap 0 ^
 nnoremap j gj
 nnoremap k gk
 
-nmap <silent> <Left> <<
-nmap <silent> <Right> >>
+nmap <silent> <Left> :tabp<CR>
+nmap <silent> <Right> :tabn<CR>
 nmap <silent> <Up> <C-w>k
 nmap <silent> <Down> <C-w>j
 
@@ -221,8 +223,6 @@ nmap <leader>ex :Explore<cr>
 " Show keyword for formatting of text under cursor
 nmap <Leader>sI :call <SID>SynStack()<CR>
 
-set t_ZH=[3m
-set t_ZR=[23m
 
 hi Special cterm=italic
 hi Conceal ctermfg=red
@@ -233,6 +233,16 @@ autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
 autocmd BufRead,BufNewFile *.json setlocal conceallevel=2 concealcursor=nc
+
+" set background=dark
+colorscheme jellybeans
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
+
+hi Special cterm=italic
+
+" For italic text in vim
+set t_ZH=[3m
+set t_ZR=[23m
 
 " Functions
 
