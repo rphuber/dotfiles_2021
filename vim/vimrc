@@ -139,6 +139,8 @@ let g:ale_fixers = {
 let g:ale_javascript_prettier_options = '--single-quote --use-tabs'
 let g:ale_fix_on_save = 1
 
+set diffopt+=vertical
+
 set modelines=0
 set vb "flash screen rather than sound bell
 set laststatus=2 " Always display the statusline in all windows
