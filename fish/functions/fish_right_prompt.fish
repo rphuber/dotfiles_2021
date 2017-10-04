@@ -57,6 +57,13 @@ function fish_right_prompt -d "Write out the right prompt"
     end
   end
 
+  # Print a red dot for failed commands.
+  if test $exit_code -ne 0
+    set_color red
+    echo -n "• "
+    set_color normal
+  end
+
   set NODEp (_node_version)
   set RUBYp (_ruby_version)
   set_color green
@@ -68,13 +75,6 @@ function fish_right_prompt -d "Write out the right prompt"
   # if test -n $is_git_repository -a (random 0 200) -gt 1
   #   git fetch &
   # end
-
-  # Print a red dot for failed commands.
-  if test $exit_code -ne 0
-    set_color red
-    echo -n "• "
-    set_color normal
-  end
 
   # Print coloured arrows when git push (up) and / or git pull (down) can be run.
   #
