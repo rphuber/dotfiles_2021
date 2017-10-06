@@ -21,7 +21,9 @@ complete -f -c yarn -n '__fish_seen_subcommand_from autoclean' -l force -s F -d 
 complete -f -c yarn -n '__fish_use_subcommand' -a bin -d 'print the folder where yarn will install executable files'
 
 complete -f -c yarn -n '__fish_use_subcommand' -a cache -d 'manage yarn cache'
-complete -f -c yarn -n '__fish_seen_subcommand_from cache' -a 'ls dir clean' 
+complete -f -c yarn -n '__fish_seen_subcommand_from cache' -a list -d 'print out every cached package'
+complete -f -c yarn -n '__fish_seen_subcommand_from cache' -a dir -d 'print out the path where cache is stored'
+complete -f -c yarn -n '__fish_seen_subcommand_from cache' -a clean -d 'clear the global cache'
 
 complete -f -c yarn -n '__fish_use_subcommand' -a check -d 'verifies the versions of the package dependencies from package.json'
 complete -f -c yarn -n '__fish_seen_subcommand_from check' -l integrity -d 'verifies that versions and hashed value of the package contents in the project’s package.json matches that of yarn’s lock file'
@@ -57,19 +59,22 @@ complete -f -c yarn -n '__fish_use_subcommand' -a licenses -d 'List licenses for
 complete -f -c yarn -n '__fish_seen_subcommand_from licenses' -a list -d 'list in alphabetical order all of the packages and licenses'
 complete -f -c yarn -n '__fish_seen_subcommand_from licenses' -a generate-disclaimer -d 'return a sorted list of licenses from all the packages'
 
-complete -f -c yarn -n '__fish_use_subcommand' -a link 
+complete -f -c yarn -n '__fish_use_subcommand' -a link -d 'symlink a package folder during development'
 
-complete -f -c yarn -n '__fish_use_subcommand' -a list 
-complete -f -c yarn -n '__fish_seen_subcommand_from list' -l depth 
+complete -f -c yarn -n '__fish_use_subcommand' -a list -d 'list installed packages'
+complete -f -c yarn -n '__fish_seen_subcommand_from list' -l depth -d 'restrict the depth of listed dependencies'
 
-complete -f -c yarn -n '__fish_use_subcommand' -a login 
-complete -f -c yarn -n '__fish_use_subcommand' -a logout 
-complete -f -c yarn -n '__fish_use_subcommand' -a outdated 
+complete -f -c yarn -n '__fish_use_subcommand' -a login -d 'store registry username and email'
+complete -f -c yarn -n '__fish_use_subcommand' -a logout -d 'clear registry username and email'
+complete -f -c yarn -n '__fish_use_subcommand' -a outdated -d 'checks for outdated package dependencies'
 
-complete -f -c yarn -n '__fish_use_subcommand' -a owner 
-complete -f -c yarn -n '__fish_seen_subcommand_from owner' -a 'add rm ls'
+complete -f -c yarn -n '__fish_use_subcommand' -a owner -d 'manage package owners'
+complete -f -c yarn -n '__fish_seen_subcommand_from owner' -a add -d 'add a user as owner of a package'
+complete -f -c yarn -n '__fish_seen_subcommand_from owner' -a rm -d 'remove a user as owner of a package'
+complete -f -c yarn -n '__fish_seen_subcommand_from owner' -a list -d 'list all oweners of a package'
 
-complete -f -c yarn -n '__fish_use_subcommand' -a pack 
+complete -f -c yarn -n '__fish_use_subcommand' -a pack -d 'creates a compressed gzip archive of package dependencies'
+complete -f -c yarn -n '__fish_seen_subcommand_from pack' -l filename -d 'creates a compressed gzip archive of package dependencies and names it <filename>'
 
 complete -f -c yarn -n '__fish_use_subcommand' -a publish 
 complete -f -c yarn -n '__fish_seen_subcommand_from publish' -l access -a 'public restricted' 
