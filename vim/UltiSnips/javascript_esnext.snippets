@@ -148,7 +148,7 @@ export $1 from '${2:./}$1';
 endsnippet
 
 snippet expn "Export nested" b
-export { $1 } from '${2:./}';
+export { $1 } from './${2:$1}';
 endsnippet
 
 snippet expi "Export from a file import" b
