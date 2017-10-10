@@ -31,6 +31,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-scripts/Gundo'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'auto-pairs'
 Plugin 'surround.vim'
