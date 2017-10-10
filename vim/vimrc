@@ -222,6 +222,7 @@ map <Leader>tn :tabnew<CR>
 map <Leader>tc :tabclose<CR>
 map <Leader>ts :tab split<CR>
 map <Leader>to :tabonly<CR>
+map <Leader>gt :GundoToggle<CR>
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger
 nmap <leader>vr :sp $MYVIMRC<cr>
