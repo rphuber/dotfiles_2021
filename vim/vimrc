@@ -236,7 +236,6 @@ nmap <Leader>sI :call <SID>SynStack()<CR>
 
 hi Special cterm=italic
 hi Conceal ctermfg=red
-let g:javascript_plugin_flow = 1
 
 let g:javascript_plugin_flow = 1
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
