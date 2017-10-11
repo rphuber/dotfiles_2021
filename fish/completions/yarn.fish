@@ -42,7 +42,7 @@ complete -f -c yarn -n '__fish_use_subcommand' -a generate-lock-entry -d 'genera
 complete -f -c yarn -n '__fish_use_subcommand' -a global -d 'prefix used for a number of commands like add, bin, list and remove'
 complete -f -c yarn -n '__fish_seen_subcommand_from global' -a add -d 'adds a package to use globally'
 complete -f -c yarn -n '__fish_seen_subcommand_from global' -a bin -d 'displays the location of the yarn bin folder'
-complete -f -c yarn -n '__fish_seen_subcommand_from global' -a ls -d 'list globally installed packages'
+complete -f -c yarn -n '__fish_seen_subcommand_from global' -a list -d 'list globally installed packages'
 complete -f -c yarn -n '__fish_seen_subcommand_from global' -a remove -d 'remove a global package that will no longer be used'
 complete -f -c yarn -n '__fish_seen_subcommand_from global' -a upgrade -d 'upgrades global packages to their latest version'
 
