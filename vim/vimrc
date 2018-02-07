@@ -14,12 +14,6 @@ set t_Co=256
 "------------------------------------------------------------------------------
 
 let g:minBufExplForceSyntaxEnable = 1
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
-filetype off
-
 set rtp+=~/.vim/bundle/Vundle.vim
 
 "-------------------------------------------------------------------------------
@@ -29,6 +23,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/Gundo'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'auto-pairs'
@@ -104,6 +101,8 @@ let g:jsx_ext_required = 0
 " let g:javascript_conceal_static     = "•"
 let g:vim_jsx_pretty_colorful_config = 1
 "------------------------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " ultisnops
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -163,7 +162,7 @@ set incsearch
 set ignorecase
 set smartcase
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
-let g:netrw_banner=0 
+let g:netrw_banner=0
 
 set linebreak
 set textwidth=80
