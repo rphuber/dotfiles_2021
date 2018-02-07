@@ -3,7 +3,6 @@
 "==============================================================================
 "
 " Author:       Ryan Huber
-" Source:       https://github.com/rphuber/dotFiles/
 "
 "------------------------------------------------------------------------------
 "
@@ -15,8 +14,6 @@ set t_Co=256
 "------------------------------------------------------------------------------
 
 let g:minBufExplForceSyntaxEnable = 1
-filetype off
-
 set rtp+=~/.vim/bundle/Vundle.vim
 
 "-------------------------------------------------------------------------------
@@ -41,8 +38,8 @@ Plugin 'repeat.vim'
 Plugin 'fugitive.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Plugin 'Yggdroot/indentLine'
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'Yggdroot/indentLine'
 
 "Plugin 'moll/vim-node'
 Plugin 'othree/html5.vim'
@@ -122,6 +119,9 @@ let g:jsx_ext_required = 0
 " let g:javascript_conceal_static     = "•"
 let g:vim_jsx_pretty_colorful_config = 1
 "------------------------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 0
 
 " ultisnops
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -168,6 +168,7 @@ set list " show trailing whiteshace and tabs
 set listchars=tab:▸\ ,trail:.,extends:>,precedes:<,nbsp:+
 set mouse=a
 set wildmenu
+set showtabline=2
 
 set scrolloff=4
 set autoindent
@@ -182,13 +183,17 @@ set ignorecase
 set smartcase
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 "let g:netrw_winsize = 25
-"let g:netrw_banner = 0
 "let g:netrw_browse_split = 4
+let g:netrw_banner=0
 
 set linebreak
 set textwidth=80
 set colorcolumn=+1,+2
 
+set undofile                " Save undos after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
 
 set guifont=Inconsolata\ for\ Powerline:h14
 set clipboard=unnamed
@@ -266,6 +271,12 @@ autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
 autocmd BufRead,BufNewFile *.json setlocal conceallevel=2 concealcursor=nc
+colorscheme jellybeans
+
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 augroup VimCSS3Syntax
   autocmd!
@@ -276,7 +287,7 @@ augroup END
 call jspretmpl#register_tag('gql', 'graphql')
 
 " set background=dark
-colorscheme jellybeans
+
 highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
 highlight cssIdentifier ctermfg=5
 highlight cssClassName ctermfg=214
@@ -284,6 +295,9 @@ highlight cssClassName ctermfg=214
 set concealcursor=nc
 set conceallevel=2
 
+hi cssClassName ctermfg=68 ctermbg=NONE cterm=NONE guifg=#50fa7b guibg=NONE gui=NONE
+hi cssClassNameDot ctermfg=68 ctermbg=NONE cterm=NONE guifg=#50fa7b guibg=NONE gui=NONE
+hi cssIdentifier ctermfg=172 ctermbg=NONE cterm=NONE guifg=#50fa7b guibg=NONE gui=NONE
 hi Special cterm=italic
 
 " For italic text in vim
