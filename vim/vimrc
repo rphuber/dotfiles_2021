@@ -27,6 +27,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/Gundo'
+"Plugin 'vim-scripts/buftabline'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'auto-pairs'
 Plugin 'surround.vim'
@@ -38,13 +41,15 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plugin 'Yggdroot/indentLine'
 
+"Plugin 'moll/vim-node'
+Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
+Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'othree/html5.vim'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'posva/vim-vue'
 
@@ -92,6 +97,21 @@ let g:LanguageClient_serverCommands = {
     \ 'reason': ['ocaml-language-server', '--stdio'],
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ }
+
+" NERDTree config settings
+"-------------------------------------------------------------------------------
+" enable line numbers
+"let NERDTreeShowLineNumbers=1
+"map <C-n> :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" make sure relative line numbers are used
+"autocmd FileType nerdtree setlocal relativenumber
+
+" vim-ariline config settings
+" ------------------------------------------------------------------------------
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 " Javascript Syntax Formatting
 let g:javascript_plugin_flow = 1
@@ -152,6 +172,7 @@ let g:ale_completion_enabled = 1
 
 set diffopt+=vertical
 
+set showtabline=2
 set modelines=0
 set vb "flash screen rather than sound bell
 set laststatus=2 " Always display the statusline in all windows
@@ -173,6 +194,8 @@ set incsearch
 set ignorecase
 set smartcase
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+"let g:netrw_winsize = 25
+"let g:netrw_browse_split = 4
 let g:netrw_banner=0
 
 set linebreak
@@ -186,6 +209,13 @@ set undoreload=10000        " number of lines to save for undo
 
 set guifont=Inconsolata\ for\ Powerline:h14
 set clipboard=unnamed
+
+" Undo
+" ------------------------------------------------------------------------------
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 "------------------------------------------------------------------------------
 " Tabs
@@ -215,8 +245,8 @@ nnoremap k gk
 
 nmap <silent> <Left> :tabp<CR>
 nmap <silent> <Right> :tabn<CR>
-nmap <silent> <Up> <C-w>k
-nmap <silent> <Down> <C-w>j
+nmap <silent> <Up> :bnext<CR>
+nmap <silent> <Down> :bprevious<CR>
 
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
@@ -264,9 +294,21 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+
 " set background=dark
 
 highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
+highlight cssIdentifier ctermfg=5
+highlight cssClassName ctermfg=214
+
+set concealcursor=nc
+set conceallevel=2
 
 hi comment cterm=italic
 hi Special cterm=italic
@@ -274,8 +316,9 @@ hi htmlArg cterm=italic ctermfg=214
 hi jsxAttrib cterm=italic ctermfg=214
 
 " Functions
+"===============================================================================
 
-" Check the highlight for word under cursor
+" Show keyword for formatting of text under cursor
 function! <SID>SynStack()
     if !exists("*synstack")
         return
