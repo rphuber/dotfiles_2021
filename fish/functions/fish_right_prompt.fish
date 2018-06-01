@@ -66,10 +66,10 @@ function fish_right_prompt -d "Write out the right prompt"
 
   set NODEp (_node_version)
   set RUBYp (_ruby_version)
-  set_color green
-  echo -n -s "$NODEp"
-  set_color red
-  echo -n -s "$RUBYp"
+  #set_color green
+  #echo -n -s "$NODEp"
+  #set_color red
+  #echo -n -s "$RUBYp"
   
   # TODO: Randomly run git fetch in the background?
   # if test -n $is_git_repository -a (random 0 200) -gt 1
