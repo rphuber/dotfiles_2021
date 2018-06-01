@@ -14,71 +14,50 @@ set t_Co=256
 "------------------------------------------------------------------------------
 
 let g:minBufExplForceSyntaxEnable = 1
-set rtp+=~/.vim/bundle/Vundle.vim
 
 "-------------------------------------------------------------------------------
 " Vundle Setup
 "-------------------------------------------------------------------------------
 
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-scripts/Gundo'
-"Plugin 'vim-scripts/buftabline'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'auto-pairs'
-Plugin 'surround.vim'
-Plugin 'commentary.vim'
-Plugin 'repeat.vim'
-Plugin 'fugitive.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'jlanzarotta/bufexplorer'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'Yggdroot/indentLine'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-scripts/Gundo'
+"Plug 'vim-scripts/buftabline'
+Plug 'flazz/vim-colorschemes'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'jlanzarotta/bufexplorer'
 
-"Plugin 'moll/vim-node'
-Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'Quramy/vim-js-pretty-template'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'jparise/vim-graphql'
-Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'posva/vim-vue'
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'digitaltoad/vim-pug'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'jparise/vim-graphql'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'posva/vim-vue'
 
-Plugin 'elixir-lang/vim-elixir'
-"Plugin 'reasonml-editor/vim-reason'
-Plugin 'reasonml-editor/vim-reason-plus'
+Plug 'elixir-lang/vim-elixir'
+"Plug 'reasonml-editor/vim-reason'
+Plug 'reasonml-editor/vim-reason-plus'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'w0rp/ale'
-"Plugin 'prettier/vim-prettier'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-
+Plug 'w0rp/ale'
+"Plug 'prettier/vim-prettier'
+call plug#end()
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -151,14 +130,14 @@ let g:gitgutter_eager = 0
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'json': ['eslint'],
-\  'graphql': ['eslint'],
+\  'graphql': ['prettier'],
 \  'css': ['eslint'],
 \  'scss': ['eslint'],
 \}
 let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'json': ['eslint'],
-\  'graphql': ['eslint'],
+\  'graphql': ['prettier'],
 \  'css': ['eslint'],
 \  'scss': ['eslint'],
 \  'elixir': ['mix_format'],
@@ -187,7 +166,6 @@ set autoindent
 set cursorline
 set backspace=indent,eol,start
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set relativenumber
 set number
 set hlsearch
 set incsearch
