@@ -21,12 +21,20 @@ let g:minBufExplForceSyntaxEnable = 1
 
 call plug#begin('~/.vim/plugged')
 
+" Fuzzyfinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'vim-scripts/Gundo'
+
+" Undo
+Plug 'simnalamburt/vim-mundo'
+"Plug 'sjl/gundo.vim'
+"plug 'vim-scripts/gundo'
+
 "Plug 'vim-scripts/buftabline'
 Plug 'flazz/vim-colorschemes'
 Plug 'jiangmiao/auto-pairs'
@@ -37,6 +45,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jlanzarotta/bufexplorer'
 
+"Syntax
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'Quramy/vim-js-pretty-template'
@@ -47,10 +56,13 @@ Plug 'jparise/vim-graphql'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
-
 Plug 'elixir-lang/vim-elixir'
-"Plug 'reasonml-editor/vim-reason'
 Plug 'reasonml-editor/vim-reason-plus'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -91,6 +103,7 @@ let g:LanguageClient_serverCommands = {
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Javascript Syntax Formatting
 let g:javascript_plugin_flow = 1
@@ -109,7 +122,7 @@ let g:vim_jsx_pretty_colorful_config = 1
 "------------------------------------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tmuxline#enabled = 1
 let g:airline_theme='bubblegum'
 
 " ultisnops
@@ -245,8 +258,8 @@ map <Leader>tn :tabnew<CR>
 map <Leader>tc :tabclose<CR>
 map <Leader>ts :tab split<CR>
 map <Leader>to :tabonly<CR>
-map <Leader>gt :GundoToggle<CR>
-map <Leader>gd :ALEGoToDefinition<CR>
+map <Leader>ut :MundoToggle<CR>
+map <Leader>gd :ALEGoToDefinitionInTab<CR>
 map <Leader>ho :ALEHover<CR>
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger

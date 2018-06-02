@@ -1,3 +1,3 @@
 function run --wraps npm
-  npm -s $argv
+  npm -s run $argv
 end
