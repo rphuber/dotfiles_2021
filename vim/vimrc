@@ -42,6 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 Plug 'airblade/vim-gitgutter'
 Plug 'jlanzarotta/bufexplorer'
 
@@ -122,8 +123,8 @@ let g:vim_jsx_pretty_colorful_config = 1
 "------------------------------------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tmuxline#enabled = 1
 let g:airline_theme='bubblegum'
+let g:airline#extensions#tmuxline#enabled = 1
 
 " ultisnops
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -180,6 +181,7 @@ set cursorline
 set backspace=indent,eol,start
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set number
+set relativenumber
 set hlsearch
 set incsearch
 set ignorecase
@@ -193,20 +195,16 @@ set linebreak
 set textwidth=80
 set colorcolumn=+1,+2
 
-set undofile                " Save undos after file closes
-set undodir=$HOME/.vim/undo " where to save undo histories
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
 
 set guifont=Inconsolata\ for\ Powerline:h14
 set clipboard=unnamed
 
 " Undo
 " ------------------------------------------------------------------------------
-set undofile
-set undodir=$HOME/.vim/undo
-set undolevels=1000
-set undoreload=10000
+set undofile                " Save undos after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
 
 "------------------------------------------------------------------------------
 " Tabs
