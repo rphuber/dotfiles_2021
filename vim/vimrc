@@ -15,9 +15,9 @@ set t_Co=256
 
 let g:minBufExplForceSyntaxEnable = 1
 
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Vundle Setup
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
 
@@ -95,7 +95,7 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " NERDTree config settings
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " enable line numbers
 "let NERDTreeShowLineNumbers=1
 "map <C-n> :NERDTreeToggle<CR>
@@ -114,7 +114,7 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 let g:anzu_status_format = "%p(%i/%l) %w"
 
 " vim-ariline config settings
-" ------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
@@ -207,13 +207,11 @@ set smartcase
 
 set linebreak
 set textwidth=80
-set colorcolumn=+1,+2
-
 
 set clipboard=unnamed
 
 " Undo
-" ------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 set undofile                " Save undos after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -318,9 +316,11 @@ hi comment cterm=italic
 hi Special cterm=italic
 hi htmlArg cterm=italic ctermfg=214
 hi jsxAttrib cterm=italic ctermfg=214
+hi ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Functions
-"===============================================================================
+"==============================================================================
 
 " Show keyword for formatting of text under cursor
 function! <SID>SynStack()
