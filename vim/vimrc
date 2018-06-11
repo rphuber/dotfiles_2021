@@ -36,7 +36,7 @@ Plug 'simnalamburt/vim-mundo'
 "plug 'vim-scripts/gundo'
 
 " Search
-Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
 
 "Plug 'vim-scripts/buftabline'
@@ -64,10 +64,10 @@ Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
 Plug 'reasonml-editor/vim-reason-plus'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -104,15 +104,13 @@ let g:LanguageClient_serverCommands = {
 "autocmd FileType nerdtree setlocal relativenumber
 
 " Use incsearch.vim for all search functions (with anzu for indication)
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-let g:incsearch#auto_nohlsearch = 1
 set hlsearch
-map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
-map * <Plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)
-map # <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 let g:anzu_status_format = "%p(%i/%l) %w"
 
 " vim-ariline config settings
@@ -178,6 +176,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_completion_enabled = 1
 
 set diffopt+=vertical
+
+colorscheme jellybeans
 
 set showtabline=2
 set modelines=0
@@ -265,6 +265,7 @@ let mapleader = "\<Space>"
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>tnf :tabnew<C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>tn :tabnew<CR>
 map <Leader>tc :tabclose<CR>
 map <Leader>ts :tab split<CR>
@@ -291,7 +292,6 @@ autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
 autocmd BufRead,BufNewFile *.json setlocal conceallevel=2 concealcursor=nc
-colorscheme jellybeans
 
 augroup VimCSS3Syntax
   autocmd!
