@@ -1,23 +1,23 @@
-"==============================================================================
+"=========================================================================
 "                                 ~My vimrc~
-"==============================================================================
+"=========================================================================
 "
 " Author:       Ryan Huber
 "
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------
 "
 set nocompatible
 set t_Co=256
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------
 " Package Setup
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------
 
 let g:minBufExplForceSyntaxEnable = 1
 
-"------------------------------------------------------------------------------
-" Vundle Setup
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------
+" Plugin Setup
+"-------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
 
@@ -88,14 +88,13 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to
 " auto-approve removal
 "
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
     \ 'reason': ['ocaml-language-server', '--stdio'],
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ }
 
 " NERDTree config settings
-"------------------------------------------------------------------------------
 " enable line numbers
 "let NERDTreeShowLineNumbers=1
 "map <C-n> :NERDTreeToggle<CR>
@@ -114,7 +113,6 @@ map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 let g:anzu_status_format = "%p(%i/%l) %w"
 
 " vim-ariline config settings
-" -----------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
@@ -136,7 +134,6 @@ let g:jsx_ext_required = 0
 " let g:javascript_conceal_prototype  = "¶"
 " let g:javascript_conceal_static     = "•"
 let g:vim_jsx_pretty_colorful_config = 1
-"------------------------------------------------------------------------------
 
 " ultisnops
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -211,32 +208,24 @@ set textwidth=80
 set clipboard=unnamed
 
 " Undo
-" -----------------------------------------------------------------------------
 set undofile                " Save undos after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
-"------------------------------------------------------------------------------
 " Tabs
-"-----------------------------------------------------------------------------
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set softtabstop=2
 
-"------------------------------------------------------------------------------
 " Formatting
-"------------------------------------------------------------------------------
 syntax on
 set noswapfile
 set splitright
 set splitbelow
 
-"------------------------------------------------------------------------------
 " Key Mappings
-"------------------------------------------------------------------------------
-
 inoremap jj <ESC>
 
 nnoremap 0 ^
@@ -286,6 +275,8 @@ hi Special cterm=italic
 hi Conceal ctermfg=red
 
 let g:javascript_plugin_flow = 1
+
+autocmd BufRead,BufNewFile .{jscs,jshint,eslint,babel}rc set filetype=json
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
@@ -304,7 +295,6 @@ augroup END
 
 
 " set background=dark
-
 highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
 highlight cssIdentifier ctermfg=5
 highlight cssClassName ctermfg=214
@@ -320,8 +310,6 @@ hi ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Functions
-"==============================================================================
-
 " Show keyword for formatting of text under cursor
 function! <SID>SynStack()
     if !exists("*synstack")
