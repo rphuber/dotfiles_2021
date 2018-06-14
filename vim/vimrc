@@ -1,6 +1,6 @@
-"==============================================================================
+"=============+++++============================================================
 "                                 ~My vimrc~
-"==============================================================================
+"=========+++++================================================================
 "
 " Author:       Ryan Huber
 "
@@ -64,10 +64,10 @@ Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
 Plug 'reasonml-editor/vim-reason-plus'
 
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -117,7 +117,7 @@ let g:anzu_status_format = "%p(%i/%l) %w"
 " -----------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='bubblegum'
