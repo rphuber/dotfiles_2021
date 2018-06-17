@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# in fish shell eval "bash path/to/this/file"
+
 tinfo="$(mktemp)"
 
 cat > "$tinfo" <<EOF
