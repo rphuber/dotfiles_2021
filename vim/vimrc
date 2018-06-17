@@ -64,10 +64,10 @@ Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
 Plug 'reasonml-editor/vim-reason-plus'
 
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
