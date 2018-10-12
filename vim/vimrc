@@ -37,6 +37,7 @@ Plug 'simnalamburt/vim-mundo'
 
 " Search
 Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 
 "Plug 'vim-scripts/buftabline'
@@ -91,7 +92,6 @@ filetype plugin indent on    " required
 "-------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
     \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ }
 
 " NERDTree config settings
@@ -114,12 +114,12 @@ let g:anzu_status_format = "%p(%i/%l) %w"
 
 " vim-ariline config settings
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:tmuxline_theme = 'nightly_fox'
 let g:airline_theme='bubblegum'
-
 " Javascript Syntax Formatting
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'underscore,react,jasmine,chai,d3,ramda,vue'
@@ -151,15 +151,15 @@ let g:gitgutter_eager = 0
 
 " ALE
 let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'json': ['eslint'],
+\  'javascript': ['prettier', 'eslint' ],
+\  'json': ['eslint', 'prettier'],
 \  'graphql': ['prettier'],
 \  'css': ['eslint'],
 \  'scss': ['eslint'],
 \}
 let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\  'json': ['eslint'],
+\  'javascript': ['prettier', 'eslint' ],
+\  'json': ['eslint', 'prettier'],
 \  'graphql': ['prettier'],
 \  'css': ['eslint'],
 \  'scss': ['eslint'],
@@ -171,6 +171,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_completion_enabled = 1
+set completeopt+=noinsert
 
 set diffopt+=vertical
 
@@ -209,7 +210,7 @@ set clipboard=unnamed
 
 " Undo
 set undofile                " Save undos after file closes
-set undodir=$HOME/.vim/undo " where to save undo histories
+set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
