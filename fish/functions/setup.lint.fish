@@ -1,4 +1,4 @@
-function setup-lint
+function setup.lint
   npm install babel-eslint eslint eslint-plugin-prettier eslint-plugin-react prettier
   echo "parser: 'babel-eslint'
 env:
