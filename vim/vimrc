@@ -29,6 +29,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Undo
 Plug 'simnalamburt/vim-mundo'
@@ -37,10 +38,12 @@ Plug 'simnalamburt/vim-mundo'
 
 " Search
 Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 
 "Plug 'vim-scripts/buftabline'
 Plug 'flazz/vim-colorschemes'
+"Plug 'haishanh/night-owl.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -171,6 +174,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_completion_enabled = 1
+set completeopt=menu,menuone,preview,noselect,noinsert
 
 set diffopt+=vertical
 
@@ -258,6 +262,7 @@ map <Leader>tc :tabclose<CR>
 map <Leader>ts :tab split<CR>
 map <Leader>to :tabonly<CR>
 map <Leader>ut :MundoToggle<CR>
+map <Leader>gb :Buffers<CR>
 map <Leader>gd :ALEGoToDefinitionInTab<CR>
 map <Leader>ho :ALEHover<CR>
 
