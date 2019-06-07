@@ -1,0 +1,8 @@
+complete -c mywell -n '__fish_use_subcommand' -xa start-functions --description "Start servless lambda offline"
+complete -c mywell -n '__fish_use_subcommand' -xa deploy-prisma --description "Deploy a prisma instance locally"
+complete -c mywell -n '__fish_use_subcommand' -xa migrate-up --description "Seed the database"
+complete -c mywell -n '__fish_use_subcommand' -xa test-api --description "Run api tests"
+complete -c mywell -n '__fish_use_subcommand' -xa start-cypress --description "Run cypress tests with gui"
+complete -c mywell -n '__fish_use_subcommand' -xa run-cypress --description "Run cypress tests without gui"
+complete -c mywell -n '__fish_use_subcommand' -xa setup-and-migrate --description "Run setup and then seed DB by running migrations"
+complete -c mywell -n '__fish_use_subcommand' -xa setup --description "prepare default local environment"
