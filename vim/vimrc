@@ -54,8 +54,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'mhinz/vim-signify'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'mhinz/vim-signify'
 Plug 'jlanzarotta/bufexplorer'
 
 "Snippets
@@ -70,21 +70,17 @@ Plug 'digitaltoad/vim-pug'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'jparise/vim-graphql'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'toyamarinyon/vim-swift'
 Plug 'keith/swift.vim'
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 
 "Linting/Fixing
 Plug 'w0rp/ale'
-"Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier'
 
 call plug#end()
 
@@ -101,13 +97,6 @@ filetype plugin indent on    " required
 " auto-approve removal
 "
 "-------------------------------------------------------------------------
-" let g:LanguageClient_serverCommands = {
-"     \ 'reason': ['~/.vim/language-server/reason-language-server.exe'],
-"     \ 'ocaml': ['ocaml-language-server', '--stdio'],
-"     \ }
-"let g:LanguageClient_serverCommands = {
-"    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-"    \ }
 
 " NERDTree config settings
 " enable line numbers
@@ -159,25 +148,17 @@ colorscheme jellybeans
 
 
 " ALE
-let g:ale_linters = {
-\  'css': ['eslint', 'prettier'],
-\  'elixir': ['elixir-ls', 'credo'],
-\  'graphql': ['prettier'],
-\  'html': ['prettier'],
-\  'json': ['eslint', 'prettier'],
-\  'scss': ['eslint'],
-\  'javascript': ['prettier', 'eslint', 'tsserver' ],
-\}
 let g:ale_fixers = {
-\  'javascript': ['prettier', 'eslint' ],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['eslint', 'prettier'],
+\  'typescript': ['eslint', 'prettier'],
 \  'json': ['eslint', 'prettier'],
-\  'graphql': ['prettier'],
+\  'graphql': ['eslint', 'prettier'],
 \  'css': ['eslint'],
 \  'scss': ['eslint'],
 \  'elixir': ['mix_format'],
 \  'reason': ['refmt'],
 \  'html': ['prettier'],
-\  'swift': ['swiftformat']
 \}
 
 let g:ale_fix_on_save = 1
@@ -188,6 +169,8 @@ let g:ale_completion_enabled = 1
 set completeopt=menu,menuone,preview,noselect,noinsert
 
 let g:ale_elixir_elixir_ls_release = '/Users/rphuber/.vim/language-server/elixir-ls/rel'
+let g:ale_reason_ls_executable = '/Users/rphuber/.vim/language-server/reason-language-server.exe'
+let g:ale_reasonml_refmt_executable = 'bsrefmt'
 
 set diffopt+=vertical
 

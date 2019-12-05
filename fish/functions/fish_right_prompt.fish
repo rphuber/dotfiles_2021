@@ -24,7 +24,7 @@ function fish_right_prompt -d "Write out the right prompt"
   
   function _node_version -d "Get the currently used node version if NVM exists"
     set -l node_version
-    available nvm; and set node_version (string trim -l -c=v (node -v 2>/dev/null)) # trimmed lef 'v'; can use 'nvm current', but slower
+    available fnm; and set node_version (string trim -l -c=v (node -v 2>/dev/null)) # trimmed lef 'v'; can use 'nvm current', but slower
     test $node_version; and echo -n -s $ICON_NODE $node_version " "
   end
 
