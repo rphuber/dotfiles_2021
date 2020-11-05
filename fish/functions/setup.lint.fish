@@ -35,7 +35,10 @@ rules:
   no-console:
     - warn
     - { allow: ['info', 'error'] }
-  prettier/prettier:
-    - error
-    - { singleQuote: true, jsxBracketSameLine: true }" > .eslintrc.yml
+  react/prop-types:
+    - disable" > .eslintrc.yml
+
+    echo "singleQuote: true
+trailingComma: all
+jsxBracketSameLine: true" > .prettierrc
 end

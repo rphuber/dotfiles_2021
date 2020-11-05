@@ -2,7 +2,6 @@ status --is-interactive; and source (rbenv init -|psub)
 set fish_greeting ""
 set -gx EDITOR (type -p vim)
 
-set -gx GOROOT /usr/local/Cellar/go/1.13.4/libexec
 set -gx GOPATH /Users/rhuber/.golang:/Users/rhuber/Code/portal
 
 # fzf

@@ -1,23 +1,28 @@
-# /Users/rphuber/.config/tmuxinator/mywell.yml
+# /Users/rphuber/.config/tmuxinator/clemson.yml
 
-name: blog
-root: ~/Documents/Code/blog/
+name: clemson
+root: ~/Documents/_code/clemson
 
 # Optional tmux socket
 # socket_name: foo
 
-# Runs before everything. Use it to start daemons etc.
-# pre: sudo /etc/rc.d/mysqld start
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
 
 # Project hooks
+
 # Runs on project start, always
 # on_project_start: command
+
 # Run on project start, the first time
 # on_project_first_start: command
+
 # Run on project start, after the first time
 # on_project_restart: command
+
 # Run on project exit ( detaching from tmux session )
 # on_project_exit: command
+
 # Run on project stop
 # on_project_stop: command
 
@@ -39,21 +44,6 @@ root: ~/Documents/Code/blog/
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
-# Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t mywell
-
 windows:
-  - editor:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - vim
+  - editor: vim
   - server:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - run develop

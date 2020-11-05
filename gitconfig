@@ -125,3 +125,5 @@
   selected = normal
   separator = red bold
   linenumber = normal
+[init]
+	defaultBranch = main

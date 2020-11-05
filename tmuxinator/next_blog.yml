@@ -1,7 +1,7 @@
-# /Users/rphuber/.config/tmuxinator/mywell.yml
+# /Users/rphuber/.config/tmuxinator/next_blog.yml
 
-name: blog
-root: ~/Documents/Code/blog/
+name: blog_next
+root: ~/Documents/Code/blog_next/
 
 # Optional tmux socket
 # socket_name: foo
@@ -56,4 +56,4 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - run develop
+        - run dev

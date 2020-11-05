@@ -7,7 +7,15 @@
 "-------------------------------------------------------------------------
 "
 set nocompatible
-set t_Co=256
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+if has("gui_running")
+"tell the term has 256 colors
+  set t_Co=256
+end
 
 "-------------------------------------------------------------------------
 " Package Setup
@@ -26,16 +34,17 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 "Statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'ryanoasis/vim-devicons'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'maximbaz/lightline-ale'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/buftabline'
 
 "Undo
 Plug 'simnalamburt/vim-mundo'
-"Plug 'sjl/gundo.vim'
-"plug 'vim-scripts/gundo'
 
 "Search
 Plug 'haya14busa/is.vim'
@@ -43,20 +52,22 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 
 "Colorschemes
+Plug 'flazz/vim-colorschemes'
 "Plug 'trevordmiller/nova-vim'
 "Plug 'drewtempelmeyer/palenight.vim'
-Plug 'flazz/vim-colorschemes'
 "Plug 'haishanh/night-owl.vim'
 
+Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vinegar'
+Plug 'machakann/vim-sandwich'
+"Plug 'tpope/vim-vinegar'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'mhinz/vim-signify'
-Plug 'jlanzarotta/bufexplorer'
+"Plug 'jlanzarotta/bufexplorer'
+"Plug 'tpope/vim-surround'
 
 "Snippets
 Plug 'SirVer/ultisnips'
@@ -71,6 +82,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
@@ -98,32 +110,19 @@ filetype plugin indent on    " required
 "
 "-------------------------------------------------------------------------
 
-" NERDTree config settings
-" enable line numbers
-"let NERDTreeShowLineNumbers=1
-"map <C-n> :NERDTreeToggle<CR>
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" make sure relative line numbers are used
-"autocmd FileType nerdtree setlocal relativenumber
+colorscheme jellybeans
 
-" Use incsearch.vim for all search functions (with anzu for indication)
-set hlsearch
-map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
-map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
-let g:anzu_status_format = "%p(%i/%l) %w"
+" CONFIGS
+"-------------------------------------------------------------------------
+source ~/.vim/configs/keymaps.vim
+source ~/.vim/configs/lightline.vim
+source ~/.vim/configs/search.vim
+source ~/.vim/configs/startify.vim
+source ~/.vim/configs/undo.vim
+source ~/.vim/configs/ultisnips.vim
+source ~/.vim/configs/ale.vim
 
-" vim-ariline config settings
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:tmuxline_theme = 'nightly_fox'
-let g:airline_theme='bubblegum'
+
 " Javascript Syntax Formatting
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'underscore,react,jasmine,chai,d3,ramda,vue'
@@ -139,40 +138,9 @@ let g:jsx_ext_required = 0
 " let g:javascript_conceal_static     = "•"
 let g:vim_jsx_pretty_colorful_config = 1
 
-" ultisnops
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-colorscheme jellybeans
-
-
-" ALE
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['eslint', 'prettier'],
-\  'typescript': ['eslint', 'prettier'],
-\  'json': ['eslint', 'prettier'],
-\  'graphql': ['eslint', 'prettier'],
-\  'css': ['eslint'],
-\  'scss': ['eslint'],
-\  'elixir': ['mix_format'],
-\  'reason': ['refmt'],
-\  'html': ['prettier'],
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_completion_enabled = 1
-set completeopt=menu,menuone,preview,noselect,noinsert
-
-let g:ale_elixir_elixir_ls_release = '/Users/rphuber/.vim/language-server/elixir-ls/rel'
-let g:ale_reason_ls_executable = '/Users/rphuber/.vim/language-server/reason-language-server.exe'
-let g:ale_reasonml_refmt_executable = 'bsrefmt'
 
 set diffopt+=vertical
+set hidden
 
 set showtabline=2
 set modelines=0
@@ -198,22 +166,10 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-"let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
-"let g:netrw_winsize = 25
-"let g:netrw_browse_split = 4
-"let g:netrw_banner=0
-
 set linebreak
 set textwidth=80
 
 set clipboard=unnamed
-
-" Undo
-set undofile                " Save undos after file closes
-set undodir=~/.vim/undo " where to save undo histories
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
 
 " Tabs
 set tabstop=2
@@ -226,56 +182,6 @@ syntax on
 set noswapfile
 set splitright
 set splitbelow
-
-" Key Mappings
-inoremap jj <ESC>
-
-nnoremap 0 ^
-nnoremap j gj
-nnoremap k gk
-
-nmap <silent> <Left> :tabp<CR>
-nmap <silent> <Right> :tabn<CR>
-nmap <silent> <Up> :bnext<CR>
-nmap <silent> <Down> :bprevious<CR>
-
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
-vnoremap <silent> <Down> :m '>+1<CR>gv=gv
-vnoremap <silent> <Up> :m '<-2<CR>gv=gv
-
-let mapleader = "\<Space>"
-" Edit another file in the same directory as the current file
-" " uses expression to extract path from current file's path
-map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-nnoremap <silent> <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-nnoremap <silent> <Leader>tnf :tabnew<C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-nnoremap <silent> <Leader>tn :tabnew<CR>
-nnoremap <silent> <Leader>tc :tabclose<CR>
-nnoremap <silent> <Leader>ts :tab split<CR>
-nnoremap <silent> <Leader>to :tabonly<CR>
-nnoremap <silent> <Leader>ut :MundoToggle<CR>
-nnoremap <silent> <Leader>gd :ALEGoToDefinitionInTab<CR>
-nnoremap <silent> <Leader>ho :ALEHover<CR>
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <Leader>gf :GFiles<CR>
-nnoremap <silent> <leader>j :ALENext<cr>
-nnoremap <silent> <leader>k :ALEPrevious<cr>
-nmap <silent> <leader>fix <Plug>(ale_fix)
-
-" Split edit your vimrc. Type space, v, r in sequence to trigger
-nmap <Leader>vr :sp $MYVIMRC<cr>
-" Source (reload) your vimrc. Type space, s, o in sequence to trigger
-nmap <Leader>so :source $MYVIMRC<cr>
-" Explore using leader
-nmap <Leader>ex :Explore<cr>
-" Show keyword for formatting of text under cursor
-nmap <Leader>sI :call <SID>SynStack()<CR>
 
 let g:javascript_plugin_flow = 1
 
@@ -313,16 +219,7 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" Gitgutter
-" let g:gitgutter_override_sign_column_highlight=0
-" let g:gitgutter_sign_added = '+'
-" let g:gitgutter_sign_modified = '•'
-" let g:gitgutter_sign_removed = '-'
-" let g:gitgutter_sign_removed_first_line = '|'
-" let g:gitgutter_sign_modified_removed = '|'
-" highlight GitGutterAdd    ctermfg=2 ctermbg=NONE
-" highlight GitGutterChange ctermfg=3 ctermbg=NONE
-" highlight GitGutterDelete ctermfg=1 ctermbg=NONE
-
 highlight ALEErrorSign ctermbg=NONE ctermfg=124
 highlight ALEWarningSign ctermbg=NONE ctermfg=11
+hi SpellBad guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE cterm=bold
+hi SpellCap guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE cterm=bold
