@@ -19,6 +19,8 @@ vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap <silent> <Down> :m '>+1<CR>gv=gv
 vnoremap <silent> <Up> :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
@@ -32,8 +34,6 @@ nnoremap <silent> <Leader>ut :MundoToggle<CR>
 nnoremap <silent> <Leader>ff :Files<CR>
 nnoremap <silent> <Leader>gf :GFiles<CR>
 nnoremap <silent> <Leader>b :Buffer<CR>
-nnoremap <silent> <leader>j :ALENext<cr>
-nnoremap <silent> <leader>k :ALEPrevious<cr>
 nnoremap <silent> <leader>gs :G<cr>
 nmap <silent> <leader>fix <Plug>(ale_fix)
 

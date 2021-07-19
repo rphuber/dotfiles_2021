@@ -29,22 +29,19 @@ rules:
   indent:
     - error
     - 2
-  quotes:
-    - error
-    - single
-  semi:
-    - error
-    - always
   linebreak-style:
     - error
     - unix
   no-console:
     - warn
     - { allow: ['info', 'error'] }
+  react/react-in-jsx-scope:
+    - off
   react/prop-types:
-    - disable" > .eslintrc.yml
+    - off" > .eslintrc.yml
 
     echo "singleQuote: true
 trailingComma: all
+semi: false
 jsxBracketSameLine: true" > .prettierrc
 end

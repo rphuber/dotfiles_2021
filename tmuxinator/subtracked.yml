@@ -1,7 +1,7 @@
-# /Users/rphuber/.config/tmuxinator/mywell.yml
+# /Users/rphuber/.config/tmuxinator/subtracked.yml
 
-name: blog
-root: ~/Documents/Code/subtracked/subtracked.io
+name: subtracked
+root: ~/Documents/_code/_projects/subtracked/subtracked/
 
 # Optional tmux socket
 # socket_name: foo
@@ -54,4 +54,4 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - run develop
+        - run dev

@@ -1,7 +1,7 @@
 # /Users/rphuber/.config/tmuxinator/mywell.yml
 
 name: blog
-root: ~/Documents/Code/blog/
+root: ~/Documents/_code/_projects/blog.rphuber/
 
 # Optional tmux socket
 # socket_name: foo

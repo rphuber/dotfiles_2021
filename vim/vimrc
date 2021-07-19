@@ -7,31 +7,22 @@
 "-------------------------------------------------------------------------
 "
 set nocompatible
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-if has("gui_running")
-"tell the term has 256 colors
-  set t_Co=256
-end
-
-"-------------------------------------------------------------------------
-" Package Setup
-"-------------------------------------------------------------------------
-
-let g:ale_completion_enabled = 1
 
 "-------------------------------------------------------------------------
 " Plugin Setup
 "-------------------------------------------------------------------------
-
 call plug#begin('~/.vim/plugged')
 
 "Fuzzyfinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"Plug 'stsewd/fzf-checkout.vim'
+
+" Cheat.sh
+"Plug 'dbeniamine/cheat.sh-vim'
+
+"file navigation
+" Plug 'francoiscabrol/ranger.vim'
 
 "Statusline
 Plug 'itchyny/lightline.vim'
@@ -62,6 +53,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'machakann/vim-sandwich'
 "Plug 'tpope/vim-vinegar'
 "Plug 'airblade/vim-gitgutter'
@@ -70,7 +62,7 @@ Plug 'machakann/vim-sandwich'
 "Plug 'tpope/vim-surround'
 
 "Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "Syntax
@@ -86,13 +78,18 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
 Plug 'elixir-lang/vim-elixir'
-Plug 'reasonml-editor/vim-reason-plus'
 Plug 'toyamarinyon/vim-swift'
 Plug 'keith/swift.vim'
+Plug 'lervag/vimtex'
+Plug 'rescript-lang/vim-rescript'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "Linting/Fixing
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier'
+
+"Language-server
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -112,16 +109,9 @@ filetype plugin indent on    " required
 
 colorscheme jellybeans
 
-" CONFIGS
-"-------------------------------------------------------------------------
-source ~/.vim/configs/keymaps.vim
-source ~/.vim/configs/lightline.vim
-source ~/.vim/configs/search.vim
-source ~/.vim/configs/startify.vim
-source ~/.vim/configs/undo.vim
-source ~/.vim/configs/ultisnips.vim
-source ~/.vim/configs/ale.vim
 
+let g:tex_flavor='latex'
+let g:tex_conceal='abdmg'
 
 " Javascript Syntax Formatting
 let g:javascript_plugin_flow = 1
@@ -139,8 +129,12 @@ let g:jsx_ext_required = 0
 let g:vim_jsx_pretty_colorful_config = 1
 
 
-set diffopt+=vertical
+if &diff
+    set diffopt-=internal
+    set diffopt+=vertical
+endif
 set hidden
+set shell=bash
 
 set showtabline=2
 set modelines=0
@@ -184,8 +178,10 @@ set splitright
 set splitbelow
 
 let g:javascript_plugin_flow = 1
+let g:go_doc_popup_window = 1
 
 autocmd BufRead,BufNewFile .{jscs,jshint,eslint,babel}rc set filetype=json
+autocmd BufRead,BufNewFile *.prisma set syntax=graphql
 autocmd InsertEnter * setlocal conceallevel=2 concealcursor=nc
 autocmd InsertLeave * setlocal conceallevel=2 concealcursor=inc
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql ALEFix
@@ -219,7 +215,29 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+if has("gui_running")
+"tell the term has 256 colors
+  set t_Co=256
+end
+
+" CONFIGS
+"-------------------------------------------------------------------------
+source ~/.vim/configs/keymaps.vim
+" source ~/.vim/configs/ranger.vim
+source ~/.vim/configs/lightline.vim
+source ~/.vim/configs/search.vim
+source ~/.vim/configs/startify.vim
+source ~/.vim/configs/undo.vim
+source ~/.vim/configs/ultisnips.vim
+" source ~/.vim/configs/coc.vim
+source ~/.vim/configs/ale.vim
+
 highlight ALEErrorSign ctermbg=NONE ctermfg=124
+hi SpellBad guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE ctermfg=NONE cterm=bold,underline
 highlight ALEWarningSign ctermbg=NONE ctermfg=11
-hi SpellBad guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE cterm=bold
-hi SpellCap guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE cterm=bold
+hi SpellCap guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE ctermfg=NONE cterm=bold,underline
