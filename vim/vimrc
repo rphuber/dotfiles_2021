@@ -6,6 +6,11 @@
 "
 "=================================
 
+" make sure that vim doesn't use fish as shell
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 set nocompatible
 set laststatus=2
 
@@ -19,14 +24,17 @@ set shiftwidth=2
 set expandtab
 set softtabstop=2
 
+" use copy paste from computer clipboard
 set clipboard=unnamed
 
+" don't keep swapfiles around
 set noswapfile
+
+" use new regular expression engine
+set regexpengine=0
+
 set splitright
 set splitbelow
-
-highlight clear SignColumn
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
 
 "---------------------------------
 " plugins
@@ -79,6 +87,8 @@ Plug 'machakann/vim-sandwich'
 " snippets
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+" syntax
+Plug 'khaveesh/vim-fish-syntax'  "for fish scripts
 
 " Initialize plugin system
 call plug#end()
@@ -108,3 +118,6 @@ source ~/.vim/configs/undo.vim
 " source ~/.vim/configs/ultisnips.vim
 " source ~/.vim/configs/coc.vim
 " source ~/.vim/configs/ale.vim
+
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
+
