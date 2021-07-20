@@ -1,0 +1,110 @@
+"=================================
+"  vimrc
+"=================================
+"
+" Author: Ryan Huber
+"
+"=================================
+
+set nocompatible
+set laststatus=2
+
+" format
+syntax on
+set number
+
+" tabs
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
+
+set clipboard=unnamed
+
+set noswapfile
+set splitright
+set splitbelow
+
+highlight clear SignColumn
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
+
+"---------------------------------
+" plugins
+"---------------------------------
+" usage
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+"Plug 'junegunn/vim-easy-align'
+
+" Any valid git URL is allowed
+"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Multiple Plug commands can be written in a single line using | separators
+
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+"Plug 'fatih/vim-go'
+
+" Plugin options
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+call plug#begin('~/.vim/plugged')
+
+" fuzzyfinder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" statusline
+Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim'
+
+" undo
+Plug 'simnalamburt/vim-mundo'
+
+" colorscheme
+Plug 'flazz/vim-colorschemes'
+
+" linting/fixing
+Plug 'w0rp/ale'
+
+" git
+Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+  
+" startup
+Plug 'mhinz/vim-startify'
+
+" surrounds
+Plug 'jiangmiao/auto-pairs'
+Plug 'machakann/vim-sandwich'
+
+" snippets
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+
+" Initialize plugin system
+call plug#end()
+
+
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PlugStatus       - lists configured plugins
+" :PlugInstall    - installs plugins; append `!` to update or just
+" :PlugUpdate
+" :PlugClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+
+"-------------------------------------------------------------------------
+
+" CONFIGS
+"-------------------------------------------------------------------------
+" source ~/.vim/configs/keymaps.vim
+" source ~/.vim/configs/ranger.vim
+" source ~/.vim/configs/lightline.vim
+" source ~/.vim/configs/search.vim
+" source ~/.vim/configs/startify.vim
+source ~/.vim/configs/undo.vim
+" source ~/.vim/configs/ultisnips.vim
+" source ~/.vim/configs/coc.vim
+" source ~/.vim/configs/ale.vim
