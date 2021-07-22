@@ -1,0 +1,130 @@
+[core]
+  editor = vim
+
+[user]
+	email = ryan.huber@verys.com
+	name = Ryan Huber
+
+[help]
+  autocorrect = 1
+
+[color]
+  color = auto
+  branch = auto
+  diff = auto
+  status = auto
+  ui = true
+
+[alias]
+  br = branch
+  st = status
+  co = checkout
+  ci = commit
+  # +head+ shows the latest commit for the current branch
+  head = log -n1
+
+  # +cbranch+ returns the current branch you are on
+  cbranch = !"git branch | grep '*' | cut -f2 -d' '"
+
+  cm = !"git checkout master"
+
+  undo = !"git reset --hard HEAD"
+  undo-soft = !"git reset HEAD"
+
+  on = !"git checkout"
+
+  # +rbranch+ returns the remote branch for the current branch you are on assuming it
+  # is named the same
+  rbranch = !"git branch -r | grep -E \"/`git cbranch`$\" | grep -v -e \"->\""
+
+  # +recent+ returns the most recent branches you've been on
+  recent = "for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+
+  short-recent = "for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
+
+  squash = !"git rebase -i master"
+
+  switch = !"git checkout $(git short-recent | fzf)"
+
+  # +review+ shows changes in your local branch that its remote branch does not have
+  review = !"git log `git rbranch`..`git cbranch`"
+
+  # +pushup+ - pushes the current branch to the remote origin
+  pushup = !"git push --set-upstream origin `git cbranch`"
+
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[push]
+  default = tracking
+#[pull]
+#  rebase = true
+
+#[rerere]
+#  enabled = 1
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[merge]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
+
+[color]
+  pager = true
+  ui = auto
+  status = auto
+  diff = auto
+  branch = auto
+  showBranch = auto
+  interactive = auto
+  grep = auto
+[color "status"]
+  header = black bold
+  branch = cyan
+  nobranch = red
+  unmerged = red
+  untracked = cyan
+  added = green
+  changed = red bold
+[color "diff"]
+  meta = red bold
+  frag = black bold
+  func = blue
+  old = red strike
+  new = green
+  commit = blue
+  whitespace = red
+  context = normal
+[color "branch"]
+  current = cyan
+  local = blue
+  remote = magenta
+  upstream = magenta
+  plain = normal
+[color "decorate"]
+  branch = blue
+  remoteBranch = magenta
+  tag = magenta
+  stash = cyan
+  HEAD = blue
+[color "interactive"]
+  prompt = red
+  header = red bold
+  error = red
+  help = black bold
+[color "grep"]
+  context = normal
+  match = cyan
+  filename = blue
+  function = blue
+  selected = normal
+  separator = red bold
+  linenumber = normal
+[init]
+	defaultBranch = main

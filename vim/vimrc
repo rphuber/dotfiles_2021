@@ -6,36 +6,6 @@
 "
 "=================================
 
-" make sure that vim doesn't use fish as shell
-if &shell =~# 'fish$'
-    set shell=sh
-endif
-
-set nocompatible
-set laststatus=2
-
-" format
-syntax on
-set number
-
-" tabs
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set softtabstop=2
-
-" use copy paste from computer clipboard
-set clipboard=unnamed
-
-" don't keep swapfiles around
-set noswapfile
-
-" use new regular expression engine
-set regexpengine=0
-
-set splitright
-set splitbelow
-
 "---------------------------------
 " plugins
 "---------------------------------
@@ -60,6 +30,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" search
+Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
+Plug 'osyo-manga/vim-anzu'
+
 " statusline
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
@@ -69,6 +44,7 @@ Plug 'simnalamburt/vim-mundo'
 
 " colorscheme
 Plug 'flazz/vim-colorschemes'
+Plug 'haishanh/night-owl.vim'
 
 " linting/fixing
 Plug 'w0rp/ale'
@@ -76,7 +52,7 @@ Plug 'w0rp/ale'
 " git
 Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
-  
+
 " startup
 Plug 'mhinz/vim-startify'
 
@@ -88,7 +64,14 @@ Plug 'machakann/vim-sandwich'
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " syntax
-Plug 'khaveesh/vim-fish-syntax'  "for fish scripts
+Plug 'khaveesh/vim-fish-syntax'     "for fish scripts
+
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'pangloss/vim-javascript'      "better js
+Plug 'leafgarland/typescript-vim'   "typescript
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 " Initialize plugin system
 call plug#end()
@@ -105,19 +88,51 @@ call plug#end()
 " auto-approve removal
 "
 
+" make sure that vim doesn't use fish as shell
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+set nocompatible
+set laststatus=2
+
+" format
+set noshowmode
+syntax on
+set number
+color jellybeans
+set cursorline
+set cursorlineopt=number
+highlight cursorlinenr cterm=bold term=bold gui=bold
+
+" tabs
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
+
+" use copy paste from computer clipboard
+set clipboard=unnamed
+
+" don't keep swapfiles around
+set noswapfile
+
+" use new regular expression engine
+set regexpengine=0
+
+set splitright
+set splitbelow
+
 "-------------------------------------------------------------------------
 
 " CONFIGS
 "-------------------------------------------------------------------------
-" source ~/.vim/configs/keymaps.vim
+source ~/.vim/configs/keymaps.vim
 " source ~/.vim/configs/ranger.vim
-" source ~/.vim/configs/lightline.vim
-" source ~/.vim/configs/search.vim
-" source ~/.vim/configs/startify.vim
+source ~/.vim/configs/lightline.vim
+source ~/.vim/configs/search.vim
+source ~/.vim/configs/startify.vim
 source ~/.vim/configs/undo.vim
 " source ~/.vim/configs/ultisnips.vim
 " source ~/.vim/configs/coc.vim
-" source ~/.vim/configs/ale.vim
-
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
-
+source ~/.vim/configs/ale.vim
