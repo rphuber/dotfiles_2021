@@ -15,13 +15,13 @@ function fish_right_prompt -d "Write out the right prompt"
   set -g ICON_RUBY                  \UE791" "     # \UE791 from Devicons; \UF047; \UE739; 💎
 
   set -l exit_code $status
-  set -l is_git_repository (git rev-parse --is-inside-work-tree ^/dev/null)
+  set -l is_git_repository (git rev-parse --is-inside-work-tree 2>/dev/null)
 
   function available -a name -d "Check if a function or program is available."
     #-a NAMES assigns the value of successive command-line arguments to the names given in NAMES
-    type "$name" ^/dev/null >&2
+    type "$name" 2>/dev/null >&2
   end
-  
+
   function _node_version -d "Get the currently used node version if NVM exists"
     set -l node_version
     available fnm; and set node_version (string trim -l -c=v (node -v 2>/dev/null)) # trimmed lef 'v'; can use 'nvm current', but slower
@@ -30,13 +30,7 @@ function fish_right_prompt -d "Write out the right prompt"
 
   function _ruby_version -d "Get RVM or rbenv version and output" #^&1 stderr2stdout, >&2 vice versa, '>' stdout, '2>' stderr
     set -l ruby_ver
-    if which rvm-prompt >/dev/null ^&1
-      set ruby_ver (rvm-prompt i v g)
-    else
-      if which rbenv >/dev/null ^&1
         set ruby_ver (rbenv version-name)
-      end
-    end
     if test -n (_rbenv_gemset 2>/dev/null; or echo "")
       test $ruby_ver; and echo -n -s $ICON_RUBY$ruby_ver"@"
     else
@@ -70,7 +64,7 @@ function fish_right_prompt -d "Write out the right prompt"
   echo -n -s "$NODEp"
   set_color red
   echo -n -s "$RUBYp"
-  
+
   # TODO: Randomly run git fetch in the background?
   # if test -n $is_git_repository -a (random 0 200) -gt 1
   #   git fetch &
@@ -81,12 +75,12 @@ function fish_right_prompt -d "Write out the right prompt"
   # Red means the local branch and the upstream branch have diverted.
   # Yellow means there are more than 3 commits to push or pull.
   if test -n "$is_git_repository"
-    git rev-parse --abbrev-ref '@{upstream}' >/dev/null ^&1; and set -l has_upstream
+    git rev-parse --abbrev-ref '@{upstream}' >/dev/null 2>&1; and set -l has_upstream
     if set -q has_upstream
-      set -l commit_counts (git rev-list --left-right --count 'HEAD...@{upstream}' ^/dev/null)
+      set -l commit_counts (git rev-list --left-right --count 'HEAD...@{upstream}' 2>/dev/null)
 
-      set -l commits_to_push (echo $commit_counts | cut -f 1 ^/dev/null)
-      set -l commits_to_pull (echo $commit_counts | cut -f 2 ^/dev/null)
+      set -l commits_to_push (echo $commit_counts | cut -f 1 2>/dev/null)
+      set -l commits_to_pull (echo $commit_counts | cut -f 2 2>/dev/null)
 
       if test $commits_to_push != 0
         if test $commits_to_pull -ne 0
@@ -117,7 +111,7 @@ function fish_right_prompt -d "Write out the right prompt"
     echo -n "$USER@"
     set_color normal
   end
- 
+
   # Print the current git branch name or shortened commit hash in colour.
   #
   # Green means the working directory is clean.
@@ -129,10 +123,10 @@ function fish_right_prompt -d "Write out the right prompt"
     set_color normal
     echo -n "["
 
-    set -l branch (git symbolic-ref --short HEAD ^/dev/null; or git show-ref --head -s --abbrev | head -n1 ^/dev/null)
+    set -l branch (git symbolic-ref --short HEAD 2>/dev/null; or git show-ref --head -s --abbrev | head -n1 2>/dev/null)
 
-    git diff-files --quiet --ignore-submodules ^/dev/null; or set -l has_unstaged_files
-    git diff-index --quiet --ignore-submodules --cached HEAD ^/dev/null; or set -l has_staged_files
+    git diff-files --quiet --ignore-submodules 2>/dev/null; or set -l has_unstaged_files
+    git diff-index --quiet --ignore-submodules --cached HEAD 2>/dev/null; or set -l has_staged_files
 
     if set -q has_unstaged_files
       set_color red

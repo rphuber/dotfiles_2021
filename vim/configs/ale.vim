@@ -42,6 +42,9 @@ let g:ale_float_preview = 1
 " let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
 
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+
 nnoremap <silent> <Leader>gd :ALEGoToDefinition<CR>
 nnoremap <silent> <Leader>sgd :ALEGoToDefinition -vsplit<CR>
 nnoremap <silent>H :ALEHover<CR>
