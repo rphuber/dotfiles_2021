@@ -118,6 +118,3 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=14 guifg=yellow
 hi SpellCap guifg=NONE guisp=yellow guibg=NONE gui=undercurl ctermbg=NONE ctermfg=NONE cterm=bold,underline
 
 hi StatusLine ctermbg=0 ctermfg=0 guibg=black
-lua << END
-require('lualine').setup()
-END
