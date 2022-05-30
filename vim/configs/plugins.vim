@@ -15,12 +15,11 @@ Plug 'github/copilot.vim'
 
 "Statusline
 Plug 'nvim-lualine/lualine.nvim'
-" If you want to have icons in your statusline choose one of these
-
-" Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
-" Plug 'mengelbrecht/lightline-bufferline'
-" Plug 'maximbaz/lightline-ale'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+"Plug 'itchyny/lightline.vim'
+"Plug 'mengelbrecht/lightline-bufferline'
+"Plug 'maximbaz/lightline-ale'
 
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'kyazdani42/nvim-web-devicons'
