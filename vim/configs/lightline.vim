@@ -5,7 +5,7 @@ let g:lightline = {}
 let g:lightline.colorscheme = 'Tomorrow_Night'
 
 let g:lightline.component = {
-      \ 'lineinfo': ' %3l:%-2c'
+      \ 'lineinfo': '%3l:%-2c'
       \}
 
 let g:lightline.component_function = {
@@ -34,9 +34,9 @@ let g:lightline.component_type = {
 
 let g:lightline.active = {
       \'right': [
-        \[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-        \[ 'lineinfo' ],
-        \[ 'fileformat' ],
+        \['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+        \['lineinfo'],
+        \['fileformat'],
         \['filetype'],
       \],
       \'left': [

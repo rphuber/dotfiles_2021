@@ -15,11 +15,9 @@ let g:ale_fixers = {
   \  'c': ['clang-format'],
   \  'cpp': ['clang-format'],
   \  'rescript': ['rescript'],
+  \  'sql': ['pgformatter'],
+  \  'terraform': ['terraform'],
   \}
-
-let g:ale_linters = {
-      \   'rescript': ['rescript'],
-      \}
 
 if has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
@@ -60,6 +58,6 @@ nnoremap <silent>H :ALEHover<CR>
 
 " " Optional, you can disable Dialyzer with this setting
 " let g:ale_elixir_elixir_ls_config = {'elixirLS': {'dialyzerEnabled': v:false}}
-
-nnoremap <silent> <leader>j :ALENext<cr>
-nnoremap <silent> <leader>k :ALEPrevious<cr>
+nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
+nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
+nnoremap <silent> <leader>ad :ALEDetail<cr>

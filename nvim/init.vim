@@ -1,17 +1,6 @@
-"=========================================================================
-"                                 ~My vimrc~
-"=========================================================================
-"
-" Author:       Ryan Huber
-"
-"-------------------------------------------------------------------------
-"
-set nocompatible
+set undodir=~/.config/nvim/undo " where to save undo histories
 
 source ~/.vim/configs/plugins.vim
-
-" CONFIGS
-"-------------------------------------------------------------------------
 source ~/.vim/configs/keymaps.vim
 " source ~/.vim/configs/ranger.vim
 source ~/.vim/configs/lightline.vim
@@ -23,3 +12,4 @@ source ~/.vim/configs/ultisnips.vim
 source ~/.vim/configs/ale.vim
 source ~/.vim/configs/functions.vim
 source ~/.vim/configs/settings.vim
+source ~/.vim/configs/bubbles.lua

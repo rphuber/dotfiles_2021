@@ -11,14 +11,23 @@ Plug 'junegunn/fzf.vim'
 "file navigation
 " Plug 'francoiscabrol/ranger.vim'
 
+Plug 'github/copilot.vim'
+
 "Statusline
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+
+" Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'maximbaz/lightline-ale'
+" Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'maximbaz/lightline-ale'
+
 "Plug 'ryanoasis/vim-devicons'
+"Plug 'kyazdani42/nvim-web-devicons'
+
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
+
 "Plug 'vim-scripts/buftabline'
 
 "Terminals
@@ -26,6 +35,7 @@ Plug 'maximbaz/lightline-ale'
 
 "Undo
 Plug 'simnalamburt/vim-mundo'
+"Plug 'mbbill/undotree'
 
 "Search
 Plug 'haya14busa/is.vim'
@@ -52,7 +62,7 @@ Plug 'machakann/vim-sandwich'
 "Plug 'tpope/vim-surround'
 
 "Snippets
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "Syntax

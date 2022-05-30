@@ -27,6 +27,7 @@ map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 nnoremap <silent> <Leader>y "+y
 nnoremap <silent> <Leader>Y gg"+yG
+nnoremap <silent> <Leader>p "+p
 nnoremap <silent> <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 nnoremap <silent> <Leader>tnf :tabnew<C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 nnoremap <silent> <Leader>tn :tabnew<CR>
