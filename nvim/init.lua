@@ -1,0 +1,6 @@
+require('plugins')
+require('lsp')
+require('user.options')
+require('user.mappings')
+require('user.startify')
+require('plugin_settings')
