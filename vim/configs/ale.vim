@@ -19,12 +19,7 @@ let g:ale_fixers = {
   \  'terraform': ['terraform'],
   \}
 
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=number
 
 let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
@@ -60,4 +55,4 @@ nnoremap <silent>H :ALEHover<CR>
 " let g:ale_elixir_elixir_ls_config = {'elixirLS': {'dialyzerEnabled': v:false}}
 nnoremap <silent> <leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>k <Plug>(ale_previous_wrap)
-nnoremap <silent> <leader>ad :ALEDetail<cr>
+nnoremap <silent> <leader>ad <Plug>(ale_detail)

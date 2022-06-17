@@ -21,6 +21,7 @@ source ~/.vim/configs/ultisnips.vim
 source ~/.vim/configs/ale.vim
 source ~/.vim/configs/functions.vim
 source ~/.vim/configs/settings.vim
+source ~/.vim/configs/highlights.vim
 
 " source ~/.vim/configs/ranger.vim
 " source ~/.vim/configs/coc.vim

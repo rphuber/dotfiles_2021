@@ -39,6 +39,7 @@ nnoremap <silent> <Leader>ff :Files<CR>
 nnoremap <silent> <Leader>gf :GFiles<CR>
 nnoremap <silent> <Leader>b :Buffer<CR>
 nnoremap <silent> <leader>gs :G<cr>
+nnoremap <silent> <leader>st :Startify<cr>
 nnoremap <silent> <leader>fn :FloatermNew<cr>
 nnoremap <silent> <leader>ft :FloatermToggle<cr>
 nmap <silent> <leader>fix <Plug>(ale_fix)

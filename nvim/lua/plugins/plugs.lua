@@ -15,13 +15,16 @@ cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 return require("packer").startup(
   function(use)
+    -- use packer to manage itself
     use { "wbthomason/packer.nvim", opt = true }
 
+    -- treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
       event = "BufRead",
     }
 
+    -- lsp and associated plugins
     use {
       "williamboman/nvim-lsp-installer",
       "neovim/nvim-lspconfig",
@@ -29,16 +32,33 @@ return require("packer").startup(
 
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path', 'jose-elias-alvarez/null-ls.nvim', -- Formatter,
+      'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/nvim-cmp',
 
     }
 
+    -- fuxxy finding with telescope
     use {
       'nvim-telescope/telescope.nvim',
       requires = { { 'nvim-lua/plenary.nvim' } }
     }
+
+    -- search
+    use 'haya14busa/is.vim'
+    use 'haya14busa/vim-asterisk'
+    use 'osyo-manga/vim-anzu'
+
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    }
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+    }
+    use 'folke/lsp-colors.nvim'
+    use 'folke/tokyonight.nvim'
 
     use 'bluz71/vim-moonfly-colors'
     use 'bluz71/vim-nightfly-guicolors'
@@ -47,11 +67,6 @@ return require("packer").startup(
       'feline-nvim/feline.nvim',
     }
     use 'kyazdani42/nvim-web-devicons'
-
-    -- search
-    use 'haya14busa/is.vim'
-    use 'haya14busa/vim-asterisk'
-    use 'osyo-manga/vim-anzu'
 
     use {
       "lewis6991/gitsigns.nvim",
@@ -62,14 +77,19 @@ return require("packer").startup(
           numhl              = true, -- Toggle with `:Gitsigns toggle_numhl`
           linehl             = false, -- Toggle with `:Gitsigns toggle_linehl`
           word_diff          = false, -- Toggle with `:Gitsigns toggle_word_diff`
-          current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+          current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
         })
       end
     }
+
+    -- comment
     use "terrortylor/nvim-comment"
+
     use 'edkolev/tmuxline.vim'
     use 'simnalamburt/vim-mundo'
     use 'mhinz/vim-startify'
+    use 'jparise/vim-graphql'
+
     -- surrounds
     use 'jiangmiao/auto-pairs'
     use 'machakann/vim-sandwich'

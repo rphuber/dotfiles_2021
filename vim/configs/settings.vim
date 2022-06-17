@@ -99,22 +99,3 @@ augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
-
-hi comment cterm=italic
-hi Special cterm=italic
-hi htmlArg cterm=italic ctermfg=214
-hi jsxAttrib cterm=italic ctermfg=214
-
-" set background=dark
-hi clear SignColumn
-hi CursorLineNr cterm=NONE ctermbg=NONE ctermfg=green
-hi cssIdentifier ctermfg=5
-hi cssClassName ctermfg=214
-
-hi ALEErrorSign ctermbg=NONE ctermfg=124 guifg=red
-hi SpellBad guifg=NONE guibg=NONE gui=undercurl ctermbg=NONE ctermfg=NONE cterm=bold,underline
-
-highlight ALEWarningSign ctermbg=NONE ctermfg=14 guifg=yellow
-hi SpellCap guifg=NONE guisp=yellow guibg=NONE gui=undercurl ctermbg=NONE ctermfg=NONE cterm=bold,underline
-
-hi StatusLine ctermbg=0 ctermfg=0 guibg=black

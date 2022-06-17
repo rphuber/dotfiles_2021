@@ -13,15 +13,18 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'github/copilot.vim'
 
-"Statusline
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-"Plug 'itchyny/lightline.vim'
-"Plug 'mengelbrecht/lightline-bufferline'
-"Plug 'maximbaz/lightline-ale'
+" Neovim
+" Plug 'lewis6991/gitsigns.nvim'
+" Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
-"Plug 'ryanoasis/vim-devicons'
+"Statusline
+" Plug 'nvim-lualine/lualine.nvim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'maximbaz/lightline-ale'
+
+Plug 'ryanoasis/vim-devicons'
 "Plug 'kyazdani42/nvim-web-devicons'
 
 "Plug 'vim-airline/vim-airline'

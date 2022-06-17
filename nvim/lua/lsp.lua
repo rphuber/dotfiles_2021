@@ -5,8 +5,21 @@ local runtime_path = vim.split(package.path, ';')
 
 local pid = vim.fn.getpid()
 
-local function default_on_attach(client)
+local function default_on_attach(client, bufnr)
   print('Attaching to ' .. client.name)
+
+  -- mappings
+  -- see :help vim.lsp for documentation on any of the below
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+
+  vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
+
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
@@ -17,42 +30,14 @@ require("nvim-lsp-installer").setup {}
 -- Uncomment this for debugging in ~/.cache/nvim/lsp.log
 -- vim.lsp.set_log_level("debug")
 
--- Diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-
-local eslint_config = {
-  lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
-  lintIgnoreExitCode = true,
-  lintStdin = true,
-  lintFormats = {
-     "%f(%l,%c): %tarning %m",
-     "%f(%l,%c): %rror %m"
-  },
-  rootMarkers = {
-     '.git/',
-     'package.json',
-     '.eslintrc*'
-  },
-}
-
 -- Thanks TJ!
 local servers = {
   bashls = true,
-  eslint = true,
   cssls = true,
   dockerls = true,
   html = true,
   jsonls = true,
-  omnisharp = {
-      cmd={vim.fn.stdpath('cache') .. "/lspconfig/omnisharp/run" , "--languageserver" , "--hostPID", tostring(pid) },
-  },
+  graphql = true,
   tsserver = {
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = {
@@ -63,8 +48,11 @@ local servers = {
       "typescriptreact",
       "typescript.tsx",
     },
+    on_attach = function(client)
+      client.resolved_capabilities.document_formatting = false
+      default_on_attach(client)
+    end,
   },
-  svelte = true,
   terraformls = true,
   sumneko_lua  = {
     settings = {
@@ -87,31 +75,6 @@ local servers = {
   },
   vimls = true,
   yamlls = true,
-  efm = {
-    on_attach = function(client)
-      client.resolved_capabilities.document_formatting = true
-      client.resolved_capabilities.goto_definition = false
-
-      default_on_attach(client)
-    end,
-    settings = {
-      languages = {
-        javascriptreact = {eslint_config},
-        ["javascript.jsx"] = {eslint_config},
-        typescript = {eslint_config},
-        ["typescript.tsx"] = {eslint_config},
-        typescriptreact = {eslint_config}
-      }
-    },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescript.tsx",
-      "typescriptreact"
-    }
-  },
 }
 
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -137,3 +100,14 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
+
+-- Diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = true,
+    signs = false,
+    update_in_insert = false,
+  }
+)
+
