@@ -70,7 +70,7 @@ local servers = {
       "typescript.tsx",
     },
     on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
       default_on_attach(client)
     end,
   },
