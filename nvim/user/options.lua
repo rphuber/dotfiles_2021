@@ -9,7 +9,7 @@ vim.opt.backspace = {'indent', 'eol', 'start'} -- default
 
 vim.opt.cursorline = true
 vim.opt.conceallevel = 1
-vim.opt.concealcursor = nc
+vim.opt.concealcursor = 'nc'
 
 vim.opt.showtabline = 2
 vim.opt.modelines = 2
@@ -26,7 +26,6 @@ vim.opt.hidden = true
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.encoding = "utf-8"
-vim.opt.guicursor = { 'n:hor50-nCursor','i:ver50-iCursor','v:block-vCursor' }
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.showmode = false
@@ -49,7 +48,7 @@ vim.opt.smartcase = true
 
 vim.opt.swapfile = false
 
-vim.opt.shell = bash -- Need this because I use fish shell
+vim.opt.shell = 'bash' -- Need this because I use fish shell
 
 -- vim.opt.regexpengine = 1
 -- vim.opt.lazyredraw = true

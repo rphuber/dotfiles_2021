@@ -1,10 +1,17 @@
-local lspconfig = require'lspconfig'
-local cmp_nvim_lsp = require'cmp_nvim_lsp'
+local lspconfig = require 'lspconfig'
+local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
 local runtime_path = vim.split(package.path, ';')
 
-local pid = vim.fn.getpid()
-
+-- Diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = true,
+  virtual_text = true,
+  signs = false,
+  update_in_insert = false,
+}
+)
 local function default_on_attach(client, bufnr)
   print('Attaching to ' .. client.name)
 
@@ -28,17 +35,31 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 require("nvim-lsp-installer").setup {}
 -- Uncomment this for debugging in ~/.cache/nvim/lsp.log
--- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("debug")
+--
 
 -- Thanks TJ!
 local servers = {
-  bashls = true,
-  cssls = true,
-  dockerls = true,
-  html = true,
-  jsonls = true,
-  graphql = true,
-  tsserver = {
+  gopls       = true,
+  graphql     = true,
+  elixirls    = {
+    cmd = { "elixirls" },
+    capabilities = capabilities,
+    on_attach = default_on_attach,
+    settings = {
+      elixirLS = {
+        -- I choose to disable dialyzer for personal reasons, but
+        -- I would suggest you also disable it unless you are well
+        -- aquainted with dialzyer and know how to use it.
+        dialyzerEnabled = false,
+        -- I also choose to turn off the auto dep fetching feature.
+        -- It often get's into a weird state that requires deleting
+        -- the .elixir_ls directory and restarting your editor.
+        fetchDeps = false
+      }
+    }
+  },
+  tsserver    = {
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = {
       "javascript",
@@ -53,8 +74,7 @@ local servers = {
       default_on_attach(client)
     end,
   },
-  terraformls = true,
-  sumneko_lua  = {
+  sumneko_lua = {
     settings = {
       Lua = {
         runtime = {
@@ -62,7 +82,7 @@ local servers = {
           path = runtime_path,
         },
         diagnostics = {
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file("", true),
@@ -73,8 +93,6 @@ local servers = {
       },
     },
   },
-  vimls = true,
-  yamlls = true,
 }
 
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -100,14 +118,3 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
-
--- Diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = true,
-    signs = false,
-    update_in_insert = false,
-  }
-)
-

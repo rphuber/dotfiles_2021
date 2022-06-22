@@ -13,8 +13,6 @@ vim.o.startofline   = true
 
 vim.o.clipboard     = "unnamed"
 
--- waiting times
-
 -- diplay
 vim.o.showmatch     = true
 vim.o.matchtime     = 2
@@ -27,7 +25,7 @@ vim.o.termguicolors = true
 
 -- sidebar
 vim.o.number         = true
-vim.o.numberwidth    = 3
+vim.o.numberwidth    = 2
 vim.o.relativenumber = true
 vim.o.signcolumn     = 'number'
 vim.o.modelines      = 0
@@ -65,3 +63,5 @@ vim.o.wildmenu = true
 
 -- colorscheme
 vim.cmd [[colorscheme moonfly]]
+vim.cmd[[highlight Search gui=NONE]]
+vim.cmd[[highlight IncSearch gui=NONE]]

@@ -289,7 +289,14 @@ require 'feline'.setup {
       'NvimTree',
       'fugitive',
       'fugitiveblame',
-      'startify'
+      'dapui_watches',
+      'dapui_stacks',
+      'dapui_breakpoints',
+      'dapui_scopes',
+      'dapui_console',
+      'dap-repl',
+      'startify',
+      'netrw'
     },
     buftypes = { 'terminal' },
     bufnames = {}

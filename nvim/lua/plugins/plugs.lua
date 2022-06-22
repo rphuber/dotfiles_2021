@@ -20,8 +20,8 @@ return require("packer").startup(
 
     -- treesitter
     use {
-      "nvim-treesitter/nvim-treesitter",
-      event = "BufRead",
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
     }
 
     -- lsp and associated plugins
@@ -35,10 +35,18 @@ return require("packer").startup(
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/nvim-cmp',
-
     }
 
-    -- fuxxy finding with telescope
+    -- debugging
+    use {
+      'mfussenegger/nvim-dap',
+      'leoluz/nvim-dap-go',
+      'rcarriga/nvim-dap-ui',
+      'theHamsta/nvim-dap-virtual-text',
+      'nvim-telescope/telescope-dap.nvim'
+    }
+
+    -- fuzzy finding with telescope
     use {
       'nvim-telescope/telescope.nvim',
       requires = { { 'nvim-lua/plenary.nvim' } }
@@ -56,6 +64,16 @@ return require("packer").startup(
     use {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
+    }
+    use {
+      "folke/twilight.nvim",
+      config = function()
+        require("twilight").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
     }
     use 'folke/lsp-colors.nvim'
     use 'folke/tokyonight.nvim'
@@ -84,6 +102,8 @@ return require("packer").startup(
 
     -- comment
     use "terrortylor/nvim-comment"
+
+    use "tpope/vim-repeat"
 
     use 'edkolev/tmuxline.vim'
     use 'simnalamburt/vim-mundo'
