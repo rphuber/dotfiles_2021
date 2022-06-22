@@ -1,5 +1,5 @@
 [core]
-  editor = vim
+	editor = nvim
 
 [user]
 	email = ryan.huber@mac.com
@@ -43,7 +43,7 @@
 
   squash = !"git rebase -i master"
 
-  switch = !"git checkout $(git short-recent | fzf)"
+  swap = !"git checkout $(git short-recent | fzf)"
 
   # +review+ shows changes in your local branch that its remote branch does not have
   review = !"git log `git rbranch`..`git cbranch`"
@@ -55,11 +55,14 @@
 
 [push]
   default = tracking
-#[pull]
+
+[pull]
+	rebase = false
 #  rebase = true
 
 #[rerere]
 #  enabled = 1
+
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustexitcode = true
@@ -83,6 +86,7 @@
   showBranch = auto
   interactive = auto
   grep = auto
+
 [color "status"]
   header = black bold
   branch = cyan
@@ -91,6 +95,7 @@
   untracked = cyan
   added = green
   changed = red bold
+  
 [color "diff"]
   meta = red bold
   frag = black bold
@@ -127,5 +132,3 @@
   linenumber = normal
 [init]
 	defaultBranch = main
-[pull]
-	rebase = false
