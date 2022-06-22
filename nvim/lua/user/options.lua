@@ -56,7 +56,7 @@ vim.o.undoreload = 10000 --  " number of lines to save for undo
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-vim.o.mouse = 'a'
+vim.o.mouse = "a"                             -- allow the mouse to be used in neovim
 
 -- command mode
 vim.o.wildmenu = true
@@ -65,3 +65,16 @@ vim.o.wildmenu = true
 vim.cmd [[colorscheme moonfly]]
 vim.cmd[[highlight Search gui=NONE]]
 vim.cmd[[highlight IncSearch gui=NONE]]
+
+-- defaults
+-- vim.opt.hlsearch = true -- default
+-- vim.opt.incsearch = true -- default
+-- vim.opt.wildmenu = true -- default
+-- vim.opt.autoindent = true -- default
+-- vim.opt.hidden = true
+-- vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
+-- vim.opt.concealcursor = 'nc'
+-- vim.opt.showtabline = 2                         -- always show tabs
+-- vim.opt.vb = true
+-- vim.opt.linebreak = true
+-- vim.opt.textwidth = 80
