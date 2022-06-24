@@ -25,7 +25,10 @@ local function default_on_attach(client, bufnr)
   vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
 
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  -- vim 0.8
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
+  -- vim 0.7
+  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end

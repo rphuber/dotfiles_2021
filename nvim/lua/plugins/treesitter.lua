@@ -3,6 +3,10 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = { "lua", "typescript", "graphql", "go" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" }, -- Install parsers synchronously (only applied to `ensure_installed`)
 
   highlight = {
     enable = true,
@@ -18,4 +22,7 @@ require 'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     },
   },
+  indent = {
+    enable = true
+  }
 }

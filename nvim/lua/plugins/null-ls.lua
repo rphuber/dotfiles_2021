@@ -20,7 +20,6 @@ local on_attach = function(client, bufnr)
       callback = function()
         -- on 0.8, you should use
         vim.lsp.buf.format({ bufnr = bufnr })
-
         -- vim.lsp.buf.formatting_sync()
       end,
     })

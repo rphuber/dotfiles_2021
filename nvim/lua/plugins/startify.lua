@@ -37,6 +37,6 @@ vim.g.startify_lists = {
   { type = "sessions", header = { "   Sessions: " } },
   { type = gitModified, header = { "   git modified" }, },
   { type = gitUntracked, header = { "   git untracked" }, },
-  { type = "commands", header = { "   Commands: " } },
+  -- { type = "commands", header = { "   Commands: " } },
   { type = "bookmarks", header = { "   Bookmarks: " } },
 }
