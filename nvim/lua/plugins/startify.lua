@@ -27,8 +27,9 @@ vim.g.startify_commands = {
 }
 
 vim.g.startify_bookmarks = {
-  { b = '~/Documents/_code/_projects/blog.rphuber' },
-  { c = '~/Documents/_code/dotfiles/nvim/init.lua' },
+  { b = '~/Developer/Projects/blog.rphuber' },
+  { c = '~/Developer/Github/dotfiles/nvim/init.lua' },
+  { d = '~/Developer/Github/dotfiles' },
 }
 
 vim.g.startify_lists = {
@@ -37,6 +38,6 @@ vim.g.startify_lists = {
   { type = "sessions", header = { "   Sessions: " } },
   { type = gitModified, header = { "   git modified" }, },
   { type = gitUntracked, header = { "   git untracked" }, },
-  -- { type = "commands", header = { "   Commands: " } },
   { type = "bookmarks", header = { "   Bookmarks: " } },
+  -- { type = "commands", header = { "   Commands: " } },
 }

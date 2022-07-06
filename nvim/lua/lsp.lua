@@ -3,52 +3,19 @@ local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
 local runtime_path = vim.split(package.path, ';')
 
--- Diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  virtual_text = true,
-  signs = false,
-  update_in_insert = false,
-}
-)
-local function default_on_attach(client, bufnr)
-  print('Attaching to ' .. client.name)
-
-  -- mappings
-  -- see :help vim.lsp for documentation on any of the below
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-
-  vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
-
-  -- vim 0.8
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
-  -- vim 0.7
-  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-end
-
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require("nvim-lsp-installer").setup {}
 -- Uncomment this for debugging in ~/.cache/nvim/lsp.log
-vim.lsp.set_log_level("debug")
---
+-- vim.lsp.set_log_level("debug")
 
 -- Thanks TJ!
 local servers = {
-  gopls       = true,
-  graphql     = true,
-  elixirls    = {
+  gopls         = true,
+  rust_analyzer = true,
+  elixirls      = {
     cmd = { "elixirls" },
-    capabilities = capabilities,
-    on_attach = default_on_attach,
     settings = {
       elixirLS = {
         -- I choose to disable dialyzer for personal reasons, but
@@ -62,7 +29,7 @@ local servers = {
       }
     }
   },
-  tsserver    = {
+  tsserver      = {
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = {
       "javascript",
@@ -72,12 +39,8 @@ local servers = {
       "typescriptreact",
       "typescript.tsx",
     },
-    on_attach = function(client)
-      client.server_capabilities.documentFormattingProvider = false
-      default_on_attach(client)
-    end,
   },
-  sumneko_lua = {
+  sumneko_lua   = {
     settings = {
       Lua = {
         runtime = {
@@ -98,8 +61,32 @@ local servers = {
   },
 }
 
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- Diagnostics
+local handlers = {
+  ["textDocument/publishDianostics"] = vim.diagnostic.config({
+    underline = true,
+    virtual_text = true,
+    signs = false,
+    update_in_insert = false,
+  })
+}
+
+local function default_on_attach(client, bufnr)
+  print('Attaching to ' .. client.name)
+
+  -- mappings
+  -- see :help vim.lsp for documentation on any of the below
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+
+  vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
+
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
+end
 
 local setup_server = function(server, config)
   if not config then
@@ -113,6 +100,7 @@ local setup_server = function(server, config)
   config = vim.tbl_deep_extend("force", {
     on_attach = default_on_attach,
     capabilities = capabilities,
+    handlers = handlers,
   }, config)
 
   lspconfig[server].setup(config)

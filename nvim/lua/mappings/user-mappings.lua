@@ -19,3 +19,9 @@ vim.keymap.set('n', '<down>', ':tabn<cr>', opts)
 -- better movement
 vim.keymap.set('n', 'j', 'gj', opts)
 vim.keymap.set('n', 'k', 'gk', opts)
+
+-- system copy/paste
+vim.keymap.set('n', '<leader>y', '"*y', opts)
+vim.keymap.set('n', '<leader>p', '"*p', opts)
+vim.keymap.set('v', '<leader>y', '"*y', opts)
+vim.keymap.set('v', '<leader>p', '"*p', opts)

@@ -29,13 +29,31 @@ return require("packer").startup(
       "williamboman/nvim-lsp-installer",
       "neovim/nvim-lspconfig",
       'jose-elias-alvarez/null-ls.nvim', -- Formatter
-
+      'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
+    }
+
+    use {
+      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lua',
+      'lukas-reineke/cmp-rg',
+      'onsails/lspkind.nvim',
+      --   'hrsh7th/cmp-cmdline',
     }
+
+    use {
+      'L3MON4D3/luasnip',
+      requires = {
+        'rafamadriz/friendly-snippets',
+      },
+    }
+
+    use {
+      'github/copilot.vim',
+    }
+
 
     -- debugging
     use {
@@ -104,9 +122,14 @@ return require("packer").startup(
     use "terrortylor/nvim-comment"
 
     use "tpope/vim-repeat"
+    use "tpope/vim-fugitive"
 
     use 'edkolev/tmuxline.vim'
-    use 'simnalamburt/vim-mundo'
+    use {
+      'simnalamburt/vim-mundo',
+      -- pin to commit until error is fixed
+      commit = "595ee332719f397c2441d85f79608113957cc78f",
+    }
     use 'mhinz/vim-startify'
     use 'jparise/vim-graphql'
 

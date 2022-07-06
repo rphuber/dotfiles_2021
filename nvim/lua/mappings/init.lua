@@ -7,5 +7,6 @@ require('gitsigns')
 require('mundo-mappings')
 require('trouble')
 require('telescope')
+require('copilot')
 
 require = oldreq

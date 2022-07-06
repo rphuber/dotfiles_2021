@@ -2,16 +2,17 @@
 
 HOME = os.getenv("HOME")
 
+-- leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 -- general
-vim.o.encoding      = 'utf-8'
-vim.o.backspace     = 'indent,eol,start' -- default  value
-vim.o.history       = 100
-vim.o.startofline   = true
+vim.o.encoding    = 'utf-8'
+vim.o.backspace   = 'indent,eol,start' -- default  value
+vim.o.history     = 100
+vim.o.startofline = true
 
-vim.o.clipboard     = "unnamed"
+-- vim.o.clipboard = "unnamed" -- using custom keybindings instead
 
 -- diplay
 vim.o.showmatch     = true
@@ -47,24 +48,24 @@ vim.o.smartindent = true
 
 -- backupfiles
 vim.o.swapfile   = false
-vim.o.undodir    = HOME .. '/.config/nvim/tmp/undo/'
-vim.o.undofile   = true --               " Save undos after file closes
-vim.o.undolevels = 1000 --   " How many undos
-vim.o.undoreload = 10000 --  " number of lines to save for undo
+vim.o.undofile   = true
+vim.opt.undodir = HOME .. "/.config/nvim/undo"
 
 -- splits
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-vim.o.mouse = "a"                             -- allow the mouse to be used in neovim
+vim.o.mouse = "a" -- allow the mouse to be used in neovim
 
 -- command mode
 vim.o.wildmenu = true
 
+vim.g.fugitive_dynamic_colors = 1
+
 -- colorscheme
 vim.cmd [[colorscheme moonfly]]
-vim.cmd[[highlight Search gui=NONE]]
-vim.cmd[[highlight IncSearch gui=NONE]]
+vim.cmd [[highlight Search gui=NONE]]
+vim.cmd [[highlight IncSearch gui=NONE]]
 
 -- defaults
 -- vim.opt.hlsearch = true -- default

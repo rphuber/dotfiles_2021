@@ -5,15 +5,17 @@ local require = function(s) return oldreq('plugins.' .. s) end
 require('plugs')
 
 -- configs for all the plugins
-require('startify')
-require('treesitter')
-require('statusline')
 require('comment')
-require('telescope')
-require('null-ls')
-require("trouble")
-require("todo-comments")
-require("lsp-colors")
+require('completion')
 require('dap')
+require("lsp-colors")
+require('luasnip')
+require('null-ls')
+require('startify')
+require('statusline')
+require('telescope')
+require("todo-comments")
+require('treesitter')
+require("trouble")
 
 require = oldreq
