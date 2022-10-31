@@ -1,18 +1,31 @@
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "lua", "typescript", "graphql", "go", "rust", "fish" },
+  ensure_installed = { "lua", "typescript", "graphql", "go", "rust", "fish", "vue" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" }, -- Install parsers synchronously (only applied to `ensure_installed`)
-
   highlight = {
     enable = true,
-
     additional_vim_regex_highlighting = false,
+    use_languagetree = true,
   },
+
+  indent = {
+    enable = true
+  },
+
+  playground = {
+    enable = false,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+  },
+
+  autotag = {
+    enable = true,
+  },
+
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -22,7 +35,4 @@ require 'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     },
   },
-  indent = {
-    enable = true
-  }
 }

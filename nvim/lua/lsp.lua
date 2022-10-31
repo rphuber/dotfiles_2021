@@ -14,6 +14,7 @@ require("nvim-lsp-installer").setup {}
 local servers = {
   gopls         = true,
   rust_analyzer = true,
+  volar = true,
   elixirls      = {
     cmd = { "elixirls" },
     settings = {

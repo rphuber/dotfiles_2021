@@ -60,6 +60,7 @@
 
 [push]
   default = tracking
+	autoSetupRemote = true
 
 [pull]
 	rebase = false

@@ -7,5 +7,16 @@ require('telescope').setup {
         ["<C-k>"] = actions.move_selection_previous,
       }
     }
+  },
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        }
+      }
+    }
   }
 }

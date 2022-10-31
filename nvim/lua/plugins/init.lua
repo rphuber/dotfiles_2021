@@ -6,6 +6,7 @@ require('plugs')
 
 -- configs for all the plugins
 require('comment')
+require('flutter')
 require('completion')
 require('dap')
 require("lsp-colors")
